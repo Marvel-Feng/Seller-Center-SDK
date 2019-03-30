@@ -42,17 +42,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $orderItemId
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function cancelOrder(Configuration $account, string $orderItemId): SuccessResponse
+    public function cancelOrder(Configuration $configuration, string $orderItemId): SuccessResponse
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_SET_CANCELLED_STATUS);
         $sellerCenterRequest->setParameters(
             [
@@ -65,17 +65,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $ordersIds
      *
      * @return Order[]
      * @throws Exception
      * @throws GuzzleException
      */
-    public function getMultipleOrderItems(Configuration $account, array $ordersIds): array
+    public function getMultipleOrderItems(Configuration $configuration, array $ordersIds): array
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_GET_MULTI_ORDER_ITEMS);
         $sellerCenterRequest->setParameters(
             [
@@ -89,23 +89,23 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return Order[]
      * @throws GuzzleException
      * @throws Exception
      */
-    public function getMultipleOrdersWithOrderItems(Configuration $account, array $data): array
+    public function getMultipleOrdersWithOrderItems(Configuration $configuration, array $data): array
     {
-        $orders           = $this->getOrders($account, $data);
+        $orders           = $this->getOrders($configuration, $data);
         $ordersMappedById = [];
         $ordersIds        = [];
         foreach ($orders as $order) {
             $ordersIds[]                            = $order->getOrderId();
             $ordersMappedById[$order->getOrderId()] = $order;
         }
-        $multipleOrderItems = $this->getMultipleOrderItems($account, $ordersIds);
+        $multipleOrderItems = $this->getMultipleOrderItems($configuration, $ordersIds);
         $ordersWithItems    = [];
         foreach ($multipleOrderItems as $multipleOrderItem) {
             /**
@@ -120,17 +120,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $orderId
      *
      * @return Order
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getOrder(Configuration $account, string $orderId): Order
+    public function getOrder(Configuration $configuration, string $orderId): Order
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_GET_ORDER);
         $sellerCenterRequest->setParameters(
             [
@@ -145,17 +145,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $orderId
      *
      * @return OrderItem[]
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getOrderItems(Configuration $account, string $orderId): array
+    public function getOrderItems(Configuration $configuration, string $orderId): array
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_GET_ORDER_ITEMS);
         $sellerCenterRequest->setParameters(
             [
@@ -169,33 +169,33 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $orderId
      *
      * @return Order
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getOrderWithOrderItems(Configuration $account, string $orderId): Order
+    public function getOrderWithOrderItems(Configuration $configuration, string $orderId): Order
     {
-        $order = $this->getOrder($account, $orderId);
-        $order->setItems($this->getOrderItems($account, $orderId));
+        $order = $this->getOrder($configuration, $orderId);
+        $order->setItems($this->getOrderItems($configuration, $orderId));
 
         return $order;
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return Order[]
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getOrders(Configuration $account, array $data): array
+    public function getOrders(Configuration $configuration, array $data): array
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_GET_ORDERS);
         $sellerCenterRequest->setParameters(
             [
@@ -216,17 +216,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function setOrderStatusToDelivered(Configuration $account, array $data): SuccessResponse
+    public function setOrderStatusToDelivered(Configuration $configuration, array $data): SuccessResponse
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_SET_TO_DELIVERED_STATUS);
         $sellerCenterRequest->setParameters(
             [
@@ -240,17 +240,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function setOrderStatusToFailedDelivery(Configuration $account, array $data): SuccessResponse
+    public function setOrderStatusToFailedDelivery(Configuration $configuration, array $data): SuccessResponse
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_SET_TO_FAILED_DELIVERY_STATUS);
         $sellerCenterRequest->setParameters(
             [
@@ -264,17 +264,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function setOrderStatusToReadyToShip(Configuration $account, array $data): SuccessResponse
+    public function setOrderStatusToReadyToShip(Configuration $configuration, array $data): SuccessResponse
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_SET_READY_TO_SHIP_STATUS);
         $sellerCenterRequest->setParameters(
             [
@@ -291,17 +291,17 @@ class OrderService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $orderItemId
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function setOrderStatusToShipped(Configuration $account, string $orderItemId): SuccessResponse
+    public function setOrderStatusToShipped(Configuration $configuration, string $orderItemId): SuccessResponse
     {
         $sellerCenterRequest = new Request();
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         $sellerCenterRequest->setAction(Request::ACTION_SET_TO_SHIPPED_STATUS);
         $sellerCenterRequest->setParameters(
             [

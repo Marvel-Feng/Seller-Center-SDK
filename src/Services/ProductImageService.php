@@ -39,14 +39,14 @@ class ProductImageService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $images
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function createImages(Configuration $account, string $images): SuccessResponse
+    public function createImages(Configuration $configuration, string $images): SuccessResponse
     {
         $sellerCenterRequest = new Request();
         $sellerCenterRequest->setParameters(
@@ -61,7 +61,7 @@ class ProductImageService
         );
         $sellerCenterRequest->setAction(Request::ACTION_IMAGE);
         $sellerCenterRequest->setBody($images);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
 
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
     }

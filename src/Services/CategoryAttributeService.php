@@ -39,14 +39,14 @@ class CategoryAttributeService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param int           $categoryId
      *
      * @return CategoryAttribute[] array
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getCategoryAttributes(Configuration $account,int $categoryId): array
+    public function getCategoryAttributes(Configuration $configuration,int $categoryId): array
     {
         $sellerCenterRequest = new Request();
 
@@ -57,7 +57,7 @@ class CategoryAttributeService
             ]
         );
         $sellerCenterRequest->setAction(Request::ACTION_GET_CATEGORY_ATTRIBUTES);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
     }
 }

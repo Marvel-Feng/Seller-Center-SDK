@@ -39,14 +39,14 @@ class FeedService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $feedId
      *
      * @return FeedStatus
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getFeedStatus(Configuration $account, string $feedId): FeedStatus
+    public function getFeedStatus(Configuration $configuration, string $feedId): FeedStatus
     {
         $sellerCenterRequest = new Request();
         $sellerCenterRequest->setParameters(
@@ -56,7 +56,7 @@ class FeedService
             ]
         );
         $sellerCenterRequest->setAction(Request::ACTION_GET_FEED_STATUS);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
 
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
     }

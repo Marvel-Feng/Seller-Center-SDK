@@ -43,14 +43,14 @@ class ProductService
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $xml
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function createProducts(Configuration $account, string $xml): SuccessResponse
+    public function createProducts(Configuration $configuration, string $xml): SuccessResponse
     {
         $sellerCenterRequest = new Request();
         $sellerCenterRequest->setParameters(
@@ -65,20 +65,20 @@ class ProductService
         );
         $sellerCenterRequest->setAction(Request::ACTION_PRODUCT_CREATE);
         $sellerCenterRequest->setBody($xml);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
 
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param array         $data
      *
      * @return Product[]
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getProducts(Configuration $account, array $data): array
+    public function getProducts(Configuration $configuration, array $data): array
     {
         $sellerCenterRequest = new Request();
         $requestParameters   = [];
@@ -105,20 +105,20 @@ class ProductService
         }
         $sellerCenterRequest->setAction(Request::ACTION_GET_PRODUCTS);
         $sellerCenterRequest->setParameters($requestParameters);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
 
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      * @param string        $xml
      *
      * @return SuccessResponse
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function updateProducts(Configuration $account, string $xml): SuccessResponse
+    public function updateProducts(Configuration $configuration, string $xml): SuccessResponse
     {
         $sellerCenterRequest = new Request();
         $sellerCenterRequest->setParameters(
@@ -128,7 +128,7 @@ class ProductService
         );
         $sellerCenterRequest->setAction(Request::ACTION_PRODUCT_UPDATE);
         $sellerCenterRequest->setBody($xml);
-        $sellerCenterRequest->addConfiguration($account);
+        $sellerCenterRequest->addConfiguration($configuration);
 
         return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
     }
