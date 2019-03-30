@@ -6,16 +6,6 @@
 [![Latest Stable Version](https://poser.pugx.org/edfa3ly-backend/seller-center-sdk/v/stable)](https://packagist.org/packages/edfa3ly-backend/seller-center-sdk)
 [![Total Downloads](https://poser.pugx.org/edfa3ly-backend/seller-center-sdk/downloads)](https://packagist.org/packages/edfa3ly-backend/seller-center-sdk)
 
-## PreInstall
-1. **RUN** `$ composer config --global --auth http-basic.repo.packagist.com salama96 95b762d01f3a2f6bf11c450c3c24698d9750328effa821903bcc25dbff82` 
-2. Add this to composer.json
-```
-"repositories": [
-   {"type": "composer", "url": "https://repo.packagist.com/edfa3ly/"},
-   {"packagist.org": false}
-]
-```
-
 ## Install
 
 Via Composer
