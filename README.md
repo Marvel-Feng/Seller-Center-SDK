@@ -2,6 +2,7 @@
 
 
 [![Build Status][ico-travis]][link-travis]
+[![codecov](https://codecov.io/gh/omarfawzi/Seller-Center-SDK/branch/master/graph/badge.svg)](https://codecov.io/gh/omarfawzi/Seller-Center-SDK)
 [![Software License][ico-license]](LICENSE.md)
 [![Latest Stable Version](https://poser.pugx.org/edfa3ly-backend/seller-center-sdk/v/stable)](https://packagist.org/packages/edfa3ly-backend/seller-center-sdk)
 [![Total Downloads](https://poser.pugx.org/edfa3ly-backend/seller-center-sdk/downloads)](https://packagist.org/packages/edfa3ly-backend/seller-center-sdk)
