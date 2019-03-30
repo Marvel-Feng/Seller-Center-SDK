@@ -79,6 +79,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://travis-ci.com/Edfa3ly/Seller-Center-SDK.svg?branch=master
+[ico-travis]: https://travis-ci.com/omarfawzi/Seller-Center-SDK.svg?branch=master
 
-[link-travis]: https://travis-ci.com/Edfa3ly/Seller-Center-SDK
+[link-travis]: https://travis-ci.com/omarfawzi/Seller-Center-SDK
