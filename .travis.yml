@@ -10,7 +10,7 @@ env:
 before_script: pecl install xdebug
 
 script:
-    - vendor/bin/simple-phpunit --coverage-clover=coverage.xml
+    - php vendor/bin/simple-phpunit --coverage-clover=coverage.xml
 
 after_success:
     # Submit coverage report to https://codecov.io
