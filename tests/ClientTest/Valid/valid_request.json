@@ -1,0 +1,9 @@
+{
+  "url": "https://sellercenter-api.x.com.y",
+  "email": "email@example.com",
+  "apiKey": "0e0ba803cb68e964a7c67922f62c7742895daa58",
+  "apiPassword": "rock4me",
+  "version": "1.0",
+  "username": "rocket",
+  "action": "GetProducts"
+}

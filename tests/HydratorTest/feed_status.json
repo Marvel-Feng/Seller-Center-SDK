@@ -1,0 +1,240 @@
+{
+  "SuccessResponse": {
+    "Head": {
+      "RequestId": "",
+      "RequestAction": "GetProducts",
+      "ResponseType": "Products",
+      "Timestamp": "2015-07-01T11:11:11+0000"
+    },
+    "Body": {
+      "FeedDetail": {
+        "Feed": "f8afda56-5ae5-4bdf-b29b-51344cad6c74",
+        "Status": "Finished",
+        "Action": "ProductCreate",
+        "CreationDate": "2019-01-16 19:23:06",
+        "UpdatedDate": "2019-01-16 20:23:07",
+        "Source": "api",
+        "TotalRecords": "22",
+        "ProcessedRecords": "22",
+        "FailedRecords": "22",
+        "FeedWarnings": {
+          "Warning": [
+            {
+              "Message": "The following SKUs have been excluded...",
+              "SellerSku": "SKU-123"
+            }
+          ]
+        },
+        "FeedErrors": {
+          "Error": [
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616894_5b87a77e001f5"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616894_5b87a77e001f5"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616894_5b87a77e07686"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616894_5b87a77e07686"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616894_5b87a77e11563"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616894_5b87a77e11563"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616894_5b87a77e1889b"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616894_5b87a77e1889b"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616894_5b87a77e1c876"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616894_5b87a77e1c876"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1536568380_5b962c3c13175"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1536568380_5b962c3c13175"
+            },
+            {
+              "Code": "0",
+              "Message": "'PC' is less than 6 characters long",
+              "SellerSku": "1536568380_5b962c3c18edc"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1536568380_5b962c3c18edc"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1536568380_5b962c3c3ab31"
+            },
+            {
+              "Code": "1",
+              "Message": "'PC' is less than 6 characters long",
+              "SellerSku": "1536568380_5b962c3c3ab31"
+            },
+            {
+              "Code": "2",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1536568380_5b962c3c3ab31"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1536568380_5b962c3c51fd9"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1536568380_5b962c3c51fd9"
+            },
+            {
+              "Code": "0",
+              "Message": "Primary category must be on a lower level",
+              "SellerSku": "1539176517_5bbdf8454be86"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1539176517_5bbdf8454be86"
+            },
+            {
+              "Code": "0",
+              "Message": "Primary category must be on a lower level",
+              "SellerSku": "1539176517_5bbdf845b1edb"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1539176517_5bbdf845b1edb"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe9450b9"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe94629d"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe9475db"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe9488aa"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe949c2c"
+            },
+            {
+              "Code": "0",
+              "Message": "Parent SKU 1535616894_5b87a77e001f5 not found",
+              "SellerSku": "1535616893_5b87a77db3bf2"
+            },
+            {
+              "Code": "1",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616893_5b87a77db3bf2"
+            },
+            {
+              "Code": "2",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616893_5b87a77db3bf2"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1535616903_5b87a78725f50"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1535616903_5b87a78725f50"
+            },
+            {
+              "Code": "0",
+              "Message": "Variation value is wrong",
+              "SellerSku": "1536568380_5b962c3c0b4cc"
+            },
+            {
+              "Code": "1",
+              "Message": "'PC' is less than 6 characters long",
+              "SellerSku": "1536568380_5b962c3c0b4cc"
+            },
+            {
+              "Code": "2",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1536568380_5b962c3c0b4cc"
+            },
+            {
+              "Code": "0",
+              "Message": "Primary category must be on a lower level",
+              "SellerSku": "1539176517_5bbdf845211d5"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1539176517_5bbdf845211d5"
+            },
+            {
+              "Code": "0",
+              "Message": "'Fall' is less than 6 characters long",
+              "SellerSku": "1540460535_5bd18ff7369d9"
+            },
+            {
+              "Code": "1",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540460535_5bd18ff7369d9"
+            },
+            {
+              "Code": "0",
+              "Message": "DescriptionArEG, NameArEG is\/are not applicable to Fashion",
+              "SellerSku": "1540816873_5bd6ffe943f95"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "test1": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetProducts",
+        "ResponseType": "Products",
+        "Timestamp": "2015-07-01T11:11:11+0000"
+      },
+      "Body": {
+        "Products": {
+          "Product": {
+            "SellerSku": "NI006ELAAGWDNAFAMZ-43340",
+            "ShopSku": "NI006ELAAGWDNAFAMZ-43340",
+            "Name": "Dr. Fawzi's Snakeoil (original)",
+            "Brand": "Dr. Fawzis Magic potions",
+            "Description": "Dr. Fawzi's Snakeoil solves every problem even if you don't have one.",
+            "TaxClass": "default",
+            "Variation": "64GB",
+            "ParentSku": "NI006ELAAGWDNAFAMZ-43340",
+            "Quantity": "99",
+            "FulfillmentByNonSellable": "1",
+            "Available": "99",
+            "Price": "1000.00",
+            "SalePrice": "",
+            "SaleStartDate": "",
+            "SaleEndDate": "",
+            "Status": "active",
+            "ProductId": "",
+            "Url": "http:\/\/example.sellercenter.net\/24020.html",
+            "MainImage": "http:\/\/static.somesite.com\/p\/image1.jpg",
+            "Images": {
+              "Image": [
+                "http:\/\/static.somesite.com\/p\/image1.jpg",
+                "http:\/\/static.somesite.com\/p\/image2.jpg",
+                "http:\/\/static.somesite.com\/p\/image3.jpg"
+              ]
+            },
+            "PrimaryCategory": "Drugs",
+            "Categories": "Medicine,Alternative Medicine",
+            "ProductData": {
+              "CommissionFeeSimple": "0.1000",
+              "PackageType": "Parcel",
+              "MinDeliveryTime": "2",
+              "MaxDeliveryTime": "3",
+              "Sourceability": "Sourceable",
+              "SupplierName": "VoguePlay",
+              "Model": "5547",
+              "SupplierType": "Marketplace",
+              "PackageHeight": "10.00",
+              "PackageLength": "15.00",
+              "PackageWidth": "5.00",
+              "PackageWeight": "0.70",
+              "ShortDescription": "Short description"
+            }
+          }
+        }
+      }
+    }
+  },
+  "test2": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetProducts",
+        "ResponseType": "Products",
+        "Timestamp": "2015-07-01T11:11:11+0000"
+      },
+      "Body": {
+        "Products": {
+          "Product": [
+            {
+              "SellerSku": "NI006ELAAGWDNAFAMZ-43340",
+              "ShopSku": "NI006ELAAGWDNAFAMZ-43340",
+              "Name": "Dr. Fawzi's Snakeoil (original)",
+              "Brand": "Dr. Fawzis Magic potions",
+              "Description": "Dr. Fawzi's Snakeoil solves every problem even if you don't have one.",
+              "TaxClass": "default",
+              "Variation": "64GB",
+              "ParentSku": "NI006ELAAGWDNAFAMZ-43340",
+              "Quantity": "99",
+              "FulfillmentByNonSellable": "1",
+              "Available": "99",
+              "Price": "1000.00",
+              "SalePrice": "",
+              "SaleStartDate": "",
+              "SaleEndDate": "",
+              "Status": "active",
+              "ProductId": "",
+              "Url": "http:\/\/example.sellercenter.net\/24020.html",
+              "MainImage": "http:\/\/static.somesite.com\/p\/image1.jpg",
+              "Images": {
+                "Image": [
+                  "http:\/\/static.somesite.com\/p\/image1.jpg",
+                  "http:\/\/static.somesite.com\/p\/image2.jpg",
+                  "http:\/\/static.somesite.com\/p\/image3.jpg"
+                ]
+              },
+              "PrimaryCategory": "Drugs",
+              "Categories": "Medicine,Alternative Medicine",
+              "ProductData": {
+                "CommissionFeeSimple": "0.1000",
+                "PackageType": "Parcel",
+                "MinDeliveryTime": "2",
+                "MaxDeliveryTime": "3",
+                "Sourceability": "Sourceable",
+                "SupplierName": "VoguePlay",
+                "Model": "5547",
+                "SupplierType": "Marketplace",
+                "PackageHeight": "10.00",
+                "PackageLength": "15.00",
+                "PackageWidth": "5.00",
+                "PackageWeight": "0.70",
+                "ShortDescription": "Short description"
+              }
+            },
+            {
+              "SellerSku": "NI006ELAAGWDNAFAMZ-43340",
+              "ShopSku": "NI006ELAAGWDNAFAMZ-43340",
+              "Name": "Dr. Fawzi's Snakeoil (original)",
+              "Brand": "Dr. Fawzis Magic potions",
+              "Description": "Dr. Fawzi's Snakeoil solves every problem even if you don't have one.",
+              "TaxClass": "default",
+              "Variation": "64GB",
+              "ParentSku": "NI006ELAAGWDNAFAMZ-43340",
+              "Quantity": "99",
+              "FulfillmentByNonSellable": "1",
+              "Available": "99",
+              "Price": "1000.00",
+              "SalePrice": "",
+              "SaleStartDate": "",
+              "SaleEndDate": "",
+              "Status": "active",
+              "ProductId": "",
+              "Url": "http:\/\/example.sellercenter.net\/24020.html",
+              "MainImage": "http:\/\/static.somesite.com\/p\/image1.jpg",
+              "Images": {
+                "Image": [
+                  "http:\/\/static.somesite.com\/p\/image1.jpg",
+                  "http:\/\/static.somesite.com\/p\/image2.jpg",
+                  "http:\/\/static.somesite.com\/p\/image3.jpg"
+                ]
+              },
+              "PrimaryCategory": "Drugs",
+              "Categories": "Medicine,Alternative Medicine",
+              "ProductData": {
+                "CommissionFeeSimple": "0.1000",
+                "PackageType": "Parcel",
+                "MinDeliveryTime": "2",
+                "MaxDeliveryTime": "3",
+                "Sourceability": "Sourceable",
+                "SupplierName": "VoguePlay",
+                "Model": "5547",
+                "SupplierType": "Marketplace",
+                "PackageHeight": "10.00",
+                "PackageLength": "15.00",
+                "PackageWidth": "5.00",
+                "PackageWeight": "0.70",
+                "ShortDescription": "Short description"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

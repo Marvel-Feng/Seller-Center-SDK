@@ -1,0 +1,123 @@
+{
+  "test1": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetProducts",
+        "ResponseType": "Products",
+        "Timestamp": "2015-07-01T11:11:11+0000"
+      },
+      "Body": {
+        "Attribute": [
+          {
+            "Label": "Memory Size (GB)",
+            "Name": "storage_capacity",
+            "GlobalIdentifier": "",
+            "isMandatory": 0,
+            "Description": "Memory Size",
+            "AttributeType": "value",
+            "ExampleValue": "",
+            "Options": ""
+          },
+          {
+            "Label": "Processor",
+            "Name": "cpu_brand",
+            "GlobalIdentifier": "",
+            "isMandatory": 0,
+            "Description": "",
+            "AttributeType": "option",
+            "ExampleValue": "",
+            "Options": {
+              "Option": [
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "Intel",
+                  "isDefault": 0
+                },
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "AMD",
+                  "isDefault": 0
+                },
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "NVIDIA",
+                  "isDefault": 0
+                }
+              ]
+            }
+          },
+          {
+            "Label": "TaxClass",
+            "Name": "TaxClass",
+            "GlobalIdentifier": "",
+            "isMandatory": 0,
+            "Description": "",
+            "AttributeType": "option",
+            "ExampleValue": "",
+            "Options": {
+              "Option": [
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "default 23",
+                  "isDefault": "1"
+                },
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "zero",
+                  "isDefault": 0
+                }
+              ]
+            }
+          },
+          {
+            "Label": "ShipmentType",
+            "Name": "ShipmentType",
+            "GlobalIdentifier": "",
+            "isMandatory": 0,
+            "Description": "",
+            "AttributeType": "option",
+            "ExampleValue": "",
+            "Options": {
+              "Option": [
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "Dropshipping",
+                  "isDefault": 0
+                },
+                {
+                  "GlobalIdentifier": "",
+                  "Name": "Cross docking",
+                  "isDefault": 0
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "test2": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetProducts",
+        "ResponseType": "Products",
+        "Timestamp": "2015-07-01T11:11:11+0000"
+      },
+      "Body": {
+        "Attribute": [{
+          "Label": "Memory Size (GB)",
+          "Name": "storage_capacity",
+          "GlobalIdentifier": "",
+          "isMandatory": 0,
+          "Description": "Memory Size",
+          "AttributeType": "value",
+          "ExampleValue": "",
+          "Options": ""
+        }]
+
+      }
+    }
+  }
+}

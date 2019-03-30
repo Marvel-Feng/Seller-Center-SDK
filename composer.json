@@ -1,0 +1,31 @@
+{
+  "name": "edfa3ly-backend/seller-center-sdk",
+  "description": "PHP SDK for Seller Center API services",
+  "type": "library",
+  "require": {
+    "symfony/validator": "^4.2",
+    "php": ">=7.1.3",
+    "ext-json": "*",
+    "ext-dom": "*",
+    "symfony/http-foundation": "^4.2",
+    "rappasoft/laravel-helpers": "^1.0",
+    "psr/log": "^1.1"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^6.3",
+    "mockery/mockery": "^1.2",
+    "symfony/phpunit-bridge": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "omarfawzi",
+      "email": "omarfawzi96@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SellerCenter\\": "src/"
+    }
+  }
+}

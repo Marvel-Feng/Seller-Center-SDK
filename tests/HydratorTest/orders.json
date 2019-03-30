@@ -1,0 +1,292 @@
+{
+  "test1": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetOrders",
+        "ResponseType": "Orders",
+        "Timestamp": "2013-08-27T14:44:13+0000",
+        "TotalCount": "15"
+      },
+      "Body": {
+        "Orders": {
+          "Order": {
+            "OrderId": "1",
+            "CustomerFirstName": "John",
+            "CustomerLastName": "Doe",
+            "OrderNumber": "3000",
+            "PaymentMethod": "CashOnDelivery",
+            "Remarks": "",
+            "DeliveryInfo": "",
+            "Price": "100.00",
+            "GiftOption": "0",
+            "GiftMessage": "",
+            "CreatedAt": "2013-09-02 02:28:17",
+            "UpdatedAt": "2013-09-02 02:28:17",
+            "AddressBilling": {
+              "FirstName": "John",
+              "LastName": "Doe",
+              "Phone": "0123456789",
+              "Phone2": "",
+              "Address1": "testtestcarmen",
+              "Address2": "testtestcarmen",
+              "CustomerEmail": "hello@sellercenter.net",
+              "City": "Kuala Lumpur",
+              "PostCode": "12345",
+              "Country": "Germany"
+            },
+            "AddressShipping": {
+              "FirstName": "John",
+              "LastName": "Doe",
+              "Phone": "0123456789",
+              "Phone2": "",
+              "Address1": "testtestcarmen",
+              "Address2": "testtestcarmen",
+              "CustomerEmail": "hello@sellercenter.net",
+              "City": "Kuala Lumpur",
+              "PostCode": "11111",
+              "Country": "Malaysia"
+            },
+            "NationalRegistrationNumber": "",
+            "ItemsCount": "12",
+            "PromisedShippingTime": "2015-06-13 17:35:22",
+            "ExtraAttributes": "{color:\"red\", isGift:\"true\"}",
+            "Statuses": {
+              "Status": "shipped"
+            }
+          }
+        }
+      }
+    }
+  },
+  "test2": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetOrders",
+        "ResponseType": "Orders",
+        "Timestamp": "2013-08-27T14:44:13+0000",
+        "TotalCount": "15"
+      },
+      "Body": {
+        "Orders": {
+          "Order": [
+            {
+              "OrderId": "1",
+              "CustomerFirstName": "John",
+              "CustomerLastName": "Doe",
+              "OrderNumber": "3000",
+              "PaymentMethod": "CashOnDelivery",
+              "Remarks": "",
+              "DeliveryInfo": "",
+              "Price": "100.00",
+              "GiftOption": "0",
+              "GiftMessage": "",
+              "CreatedAt": "2013-09-02 02:28:17",
+              "UpdatedAt": "2013-09-02 02:28:17",
+              "AddressBilling": {
+                "FirstName": "John",
+                "LastName": "Doe",
+                "Phone": "0123456789",
+                "Phone2": "",
+                "Address1": "testtestcarmen",
+                "Address2": "testtestcarmen",
+                "CustomerEmail": "hello@sellercenter.net",
+                "City": "Kuala Lumpur",
+                "PostCode": "12345",
+                "Country": "Germany"
+              },
+              "AddressShipping": {
+                "FirstName": "John",
+                "LastName": "Doe",
+                "Phone": "0123456789",
+                "Phone2": "",
+                "Address1": "testtestcarmen",
+                "Address2": "testtestcarmen",
+                "CustomerEmail": "hello@sellercenter.net",
+                "City": "Kuala Lumpur",
+                "PostCode": "11111",
+                "Country": "Malaysia"
+              },
+              "NationalRegistrationNumber": "",
+              "ItemsCount": "12",
+              "PromisedShippingTime": "2015-06-13 17:35:22",
+              "ExtraAttributes": "{color:\"red\", isGift:\"true\"}",
+              "Statuses": {
+                "Status": "shipped"
+              }
+            },
+            {
+              "OrderId": "1",
+              "CustomerFirstName": "John",
+              "CustomerLastName": "Doe",
+              "OrderNumber": "3000",
+              "PaymentMethod": "CashOnDelivery",
+              "Remarks": "",
+              "DeliveryInfo": "",
+              "Price": "100.00",
+              "GiftOption": "0",
+              "GiftMessage": "",
+              "CreatedAt": "2013-09-02 02:28:17",
+              "UpdatedAt": "2013-09-02 02:28:17",
+              "AddressBilling": {
+                "FirstName": "John",
+                "LastName": "Doe",
+                "Phone": "0123456789",
+                "Phone2": "",
+                "Address1": "testtestcarmen",
+                "Address2": "testtestcarmen",
+                "CustomerEmail": "hello@sellercenter.net",
+                "City": "Kuala Lumpur",
+                "PostCode": "12345",
+                "Country": "Germany"
+              },
+              "AddressShipping": {
+                "FirstName": "John",
+                "LastName": "Doe",
+                "Phone": "0123456789",
+                "Phone2": "",
+                "Address1": "testtestcarmen",
+                "Address2": "testtestcarmen",
+                "CustomerEmail": "hello@sellercenter.net",
+                "City": "Kuala Lumpur",
+                "PostCode": "11111",
+                "Country": "Malaysia"
+              },
+              "NationalRegistrationNumber": "",
+              "ItemsCount": "12",
+              "PromisedShippingTime": "2015-06-13 17:35:22",
+              "ExtraAttributes": "{color:\"red\", isGift:\"true\"}",
+              "Statuses": {
+                "Status": "shipped"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "test3": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetMultipleOrderItems",
+        "ResponseType": "Orders",
+        "Timestamp": "2015-05-29T12:35:54+0200"
+      },
+      "Body": {
+        "Orders": {
+          "Order": [
+            {
+              "OrderId": "1",
+              "OrderNumber": "300028621",
+              "OrderItems": {
+                "OrderItem": {
+                  "OrderItemId": "1",
+                  "OrderId": "1",
+                  "Name": "Checkmate Contrasted Two Pocket Short Sleeve Check\n              Shirt",
+                  "Sku": "32132132121321321321",
+                  "ShopSku": "CH650FA84EFZANMY-113840",
+                  "ShippingType": "",
+                  "ItemPrice": "69.00",
+                  "PaidPrice": "69.00",
+                  "WalletCredits": "0.00",
+                  "TaxAmount": "0.00",
+                  "ShippingAmount": "12.50",
+                  "VoucherAmount": "0",
+                  "VoucherCode": "",
+                  "Status": "",
+                  "IsProcessable": "1",
+                  "ShipmentProvider": "",
+                  "IsDigital": "1",
+                  "DigitalDeliveryInfo": "+00123456789",
+                  "TrackingCode": "7489",
+                  "Reason": "",
+                  "ReasonDetail": "",
+                  "PurchaseOrderId": "72587",
+                  "PurchaseOrderNumber": "MPDS-D1405061201",
+                  "PackageId": "",
+                  "ShippingProviderType": "express",
+                  "ExtraAttributes": "{isGift:\"yes\"}",
+                  "CreatedAt": "2015-05-26 10:21:13",
+                  "UpdatedAt": "2015-05-26 11:55:53",
+                  "ReturnStatus": ""
+                }
+              }
+            },
+            {
+              "OrderId": "5",
+              "OrderNumber": "300028621",
+              "OrderItems": {
+                "OrderItem": [
+                  {
+                    "OrderItemId": "6",
+                    "OrderId": "5",
+                    "Name": "Checkmate Contrasted Two Pocket Short Sleeve Check\n              Shirt",
+                    "Sku": "32132132121321321321",
+                    "ShopSku": "CH650FA84EFZANMY-113840",
+                    "ShippingType": "",
+                    "ItemPrice": "69.00",
+                    "PaidPrice": "69.00",
+                    "WalletCredits": "0.00",
+                    "TaxAmount": "0.00",
+                    "ShippingAmount": "12.50",
+                    "VoucherAmount": "0",
+                    "VoucherCode": "",
+                    "Status": "",
+                    "IsProcessable": "1",
+                    "ShipmentProvider": "",
+                    "IsDigital": "0",
+                    "DigitalDeliveryInfo": "",
+                    "TrackingCode": "12321",
+                    "Reason": "",
+                    "ReasonDetail": "",
+                    "PurchaseOrderId": "72587",
+                    "PurchaseOrderNumber": "MPDS-D1405061201",
+                    "PackageId": "",
+                    "ShippingProviderType": "express",
+                    "ExtraAttributes": "{isGift:\"yes\"}",
+                    "CreatedAt": "2015-05-26 10:29:03",
+                    "UpdatedAt": "2015-05-26 11:44:26",
+                    "ReturnStatus": ""
+                  },
+                  {
+                    "OrderItemId": "7",
+                    "OrderId": "5",
+                    "Name": "Checkmate Contrasted Two Pocket Short Sleeve Check\n              Shirt",
+                    "Sku": "32132132121321321321",
+                    "ShopSku": "CH650FA84EFZANMY-113840",
+                    "ShippingType": "",
+                    "ItemPrice": "69.00",
+                    "PaidPrice": "69.00",
+                    "WalletCredits": "0.00",
+                    "TaxAmount": "0.00",
+                    "ShippingAmount": "12.50",
+                    "VoucherAmount": "0",
+                    "VoucherCode": "",
+                    "Status": "",
+                    "IsProcessable": "1",
+                    "ShipmentProvider": "",
+                    "IsDigital": "1",
+                    "DigitalDeliveryInfo": "+00123456789",
+                    "TrackingCode": "12321",
+                    "Reason": "",
+                    "ReasonDetail": "",
+                    "PurchaseOrderId": "72587",
+                    "PurchaseOrderNumber": "MPDS-D1405061201",
+                    "PackageId": "",
+                    "ShippingProviderType": "",
+                    "ExtraAttributes": "{isGift:\"yes\"}",
+                    "CreatedAt": "2015-05-26 10:29:03",
+                    "UpdatedAt": "2015-05-26 11:44:26",
+                    "ReturnStatus": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

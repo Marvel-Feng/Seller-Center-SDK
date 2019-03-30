@@ -1,0 +1,32 @@
+{
+  "test1": {
+    "SuccessResponse": {
+      "Head": {
+        "RequestId": "",
+        "RequestAction": "GetProducts",
+        "ResponseType": "Products",
+        "Timestamp": "2015-07-01T11:11:11+0000"
+      }
+    }
+  },
+  "test2": {
+    "ErrorResponse": {
+      "Head": {
+        "RequestAction": "GetOrder",
+        "ErrorType": "Sender",
+        "ErrorCode": "0",
+        "ErrorMessage": "E0[number]: [error message]"
+      }
+    }
+  },
+  "test3": {
+    "ErrorResponse": {
+      "Head": {
+        "RequestAction": "GetOrder",
+        "ErrorType": "Sender",
+        "ErrorCode": "900",
+        "ErrorMessage": "E0[number]: [error message]"
+      }
+    }
+  }
+}
