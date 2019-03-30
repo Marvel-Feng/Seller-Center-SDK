@@ -63,6 +63,6 @@ class ProductImageService
         $sellerCenterRequest->setBody($images);
         $sellerCenterRequest->addConfiguration($configuration);
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 }

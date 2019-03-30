@@ -61,7 +61,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 
     /**
@@ -84,8 +84,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)
-            ->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 
     /**
@@ -140,7 +139,7 @@ class OrderService
         );
 
         return current(
-            $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody()
+            $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody()
         );
     }
 
@@ -164,8 +163,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)
-            ->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 
     /**
@@ -212,7 +210,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 
     /**
@@ -236,7 +234,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 
     /**
@@ -260,7 +258,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 
     /**
@@ -287,7 +285,7 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 
     /**
@@ -310,6 +308,6 @@ class OrderService
             ]
         );
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 }

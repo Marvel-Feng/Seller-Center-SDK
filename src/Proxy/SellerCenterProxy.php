@@ -2,8 +2,12 @@
 
 namespace SellerCenter\Proxy;
 
+use Exception;
+use GuzzleHttp\Exception\GuzzleException;
+use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Http\Client;
+use SellerCenter\Model\Configuration;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Model\Request;
 
@@ -28,16 +32,22 @@ class SellerCenterProxy
     }
 
     /**
-     * @param Request $sellerCenterRequest
+     * @param Configuration $configuration
+     * @param Request       $sellerCenterRequest
      *
      * @return SuccessResponse
-     * @throws \SellerCenter\Exception\SellerCenterException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Exception
+     * @throws GuzzleException
+     * @throws SellerCenterException
+     * @throws Exception
      */
-    public function getResponse(Request $sellerCenterRequest): SuccessResponse
+    public function getResponse(Configuration $configuration, Request $sellerCenterRequest): SuccessResponse
     {
-        $jsonResponse = json_decode($this->sellerCenterClient->sendSellerCenterRequest($sellerCenterRequest)->getBody(),true);
+        $jsonResponse = json_decode(
+            $this->sellerCenterClient->sendSellerCenterRequest($configuration, $sellerCenterRequest)
+                ->getBody(),
+            true
+        );
+
         return $this->responseHandler->generateSellerCenterSuccessResponse($jsonResponse);
     }
 

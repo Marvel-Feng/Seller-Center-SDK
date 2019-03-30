@@ -15,6 +15,7 @@ use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Http\Client;
+use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Proxy\SellerCenterProxy;
@@ -66,7 +67,7 @@ class ProxyTest extends TestCase
             )
             ->getMock();
         $proxyService      = new SellerCenterProxy($clientServiceMock, $this->responseHandler);
-        $response          = $proxyService->getResponse(m::mock(Request::class));
+        $response          = $proxyService->getResponse(m::mock(Configuration::class),m::mock(Request::class));
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 

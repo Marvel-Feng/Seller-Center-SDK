@@ -8,6 +8,8 @@
 
 namespace SellerCenter\Model;
 
+use SellerCenter\Http\Client;
+
 class Configuration
 {
     /**
@@ -42,6 +44,21 @@ class Configuration
      * @var string $version
      */
     protected $version;
+
+    /**
+     * @var int $maxAttemptsDelay
+     */
+    protected $maxAttemptsDelay = Client::MAX_ATTEMPTS_DELAY;
+
+    /**
+     * @var int $minAttemptsDelay
+     */
+    protected $minAttemptsDelay = Client::MIN_ATTEMPTS_DELAY;
+
+    /**
+     * @var int $requestAttemptsThreshold
+     */
+    protected $requestAttemptsThreshold = Client::REQUEST_ATTEMPTS_THRESHOLD;
 
     /**
      * Configuration constructor.
@@ -163,6 +180,54 @@ class Configuration
     public function setVersion(string $version)
     {
         $this->version = $version;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxAttemptsDelay(): int
+    {
+        return $this->maxAttemptsDelay;
+    }
+
+    /**
+     * @param int $maxAttemptsDelay
+     */
+    public function setMaxAttemptsDelay(int $maxAttemptsDelay): void
+    {
+        $this->maxAttemptsDelay = $maxAttemptsDelay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinAttemptsDelay(): int
+    {
+        return $this->minAttemptsDelay;
+    }
+
+    /**
+     * @param int $minAttemptsDelay
+     */
+    public function setMinAttemptsDelay(int $minAttemptsDelay): void
+    {
+        $this->minAttemptsDelay = $minAttemptsDelay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRequestAttemptsThreshold(): int
+    {
+        return $this->requestAttemptsThreshold;
+    }
+
+    /**
+     * @param int $requestAttemptsThreshold
+     */
+    public function setRequestAttemptsThreshold(int $requestAttemptsThreshold): void
+    {
+        $this->requestAttemptsThreshold = $requestAttemptsThreshold;
     }
 
 }

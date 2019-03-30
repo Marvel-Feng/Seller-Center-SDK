@@ -6,6 +6,7 @@ use DOMDocument;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Http\Client;
+use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\ResponseHead;
 use SellerCenter\Model\SuccessResponse;
@@ -77,20 +78,22 @@ class ResponseHandler
     }
 
     /**
+     * @param Configuration         $configuration
      * @param Request               $sellerCenterRequest
      * @param SellerCenterException $exception
      * @param                       $attemptsCount
      */
     public function emergencyLog(
+        Configuration $configuration,
         Request $sellerCenterRequest,
         SellerCenterException $exception,
         $attemptsCount
     ) {
         $logContext = [
             'exceptionMessage'  => $exception->getMessage(),
-            'attemptsThreshold' => Client::REQUEST_ATTEMPTS_THRESHOLD,
+            'attemptsThreshold' => $configuration->getRequestAttemptsThreshold(),
             'attemptsCount'     => $attemptsCount,
-            'attemptDelayLimit' => Client::$MAX_ATTEMPTS_DELAY,
+            'attemptDelayLimit' => $configuration->getMaxAttemptsDelay(),
             'parameters'        => $sellerCenterRequest->getParameters(),
             'headers'           => $sellerCenterRequest->getHeaders(),
             'method'            => $sellerCenterRequest->getMethod(),

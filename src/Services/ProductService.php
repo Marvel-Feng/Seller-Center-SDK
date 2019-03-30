@@ -67,7 +67,7 @@ class ProductService
         $sellerCenterRequest->setBody($xml);
         $sellerCenterRequest->addConfiguration($configuration);
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 
     /**
@@ -107,7 +107,7 @@ class ProductService
         $sellerCenterRequest->setParameters($requestParameters);
         $sellerCenterRequest->addConfiguration($configuration);
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 
     /**
@@ -130,6 +130,6 @@ class ProductService
         $sellerCenterRequest->setBody($xml);
         $sellerCenterRequest->addConfiguration($configuration);
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest);
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest);
     }
 }

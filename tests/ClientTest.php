@@ -23,6 +23,7 @@ use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Http\Client;
+use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 
 class ClientTest extends TestCase
@@ -57,6 +58,14 @@ class ClientTest extends TestCase
     public function testClientSendRequest(string $responseBody, int $case, int $statusCode = 200)
     {
         $validRequest = json_decode(file_get_contents(__DIR__.'/ClientTest/Valid/valid_request.json'), true);
+        $configuration = new Configuration(
+            $validRequest['url'],
+            $validRequest['email'],
+            $validRequest['apiKey'],
+            $validRequest['apiPassword'],
+            $validRequest['username'],
+            $validRequest['version']
+        );
         if ($case < 4) {
             $guzzleMock = m::mock(GuzzleClient::class)
                 ->allows('request')
@@ -82,36 +91,34 @@ class ClientTest extends TestCase
                 )
                 ->getMock();
         }
+        $configuration->setMaxAttemptsDelay(0);
+        $configuration->setMinAttemptsDelay(0);
         $client = new Client($this->responseHandler);
         $reflection       = new ReflectionClass($client);
-        $maxDelayProperty = $reflection->getProperty('MAX_ATTEMPTS_DELAY');
-        $maxDelayProperty->setValue(0);
-        $minDelayProperty = $reflection->getProperty('MIN_ATTEMPTS_DELAY');
-        $minDelayProperty->setValue(0);
         $guzzleProperty = $reflection->getProperty('httpClient');
         $guzzleProperty->setAccessible(true);
         $guzzleProperty->setValue($client, $guzzleMock);
         $request = $this->formSellerCenterRequest($validRequest);
         switch ($case) {
             case 1 :
-                $response = $client->sendSellerCenterRequest($request);
+                $response = $client->sendSellerCenterRequest($configuration,$request);
                 $this->assertInstanceOf(GuzzleResponse::class, $response);
                 break;
             case 2 :
                 $this->expectException(SellerCenterException::class);
-                $client->sendSellerCenterRequest($request);
+                $client->sendSellerCenterRequest($configuration,$request);
                 break;
             case 3 :
                 $this->expectException(SellerCenterException::class);
-                $client->sendSellerCenterRequest($request);
+                $client->sendSellerCenterRequest($configuration,$request);
                 break;
             case 4 :
-                $response = $client->sendSellerCenterRequest($request);
+                $response = $client->sendSellerCenterRequest($configuration,$request);
                 $this->assertInstanceOf(GuzzleResponse::class, $response);
                 break;
             case 5 :
                 $this->expectException(SellerCenterException::class);
-                $client->sendSellerCenterRequest($request);
+                $client->sendSellerCenterRequest($configuration,$request);
                 break;
             default :
                 break;

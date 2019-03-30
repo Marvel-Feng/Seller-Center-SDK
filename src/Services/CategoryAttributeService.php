@@ -58,6 +58,6 @@ class CategoryAttributeService
         );
         $sellerCenterRequest->setAction(Request::ACTION_GET_CATEGORY_ATTRIBUTES);
         $sellerCenterRequest->addConfiguration($configuration);
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 }

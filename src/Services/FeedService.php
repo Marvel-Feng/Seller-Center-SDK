@@ -58,6 +58,6 @@ class FeedService
         $sellerCenterRequest->setAction(Request::ACTION_GET_FEED_STATUS);
         $sellerCenterRequest->addConfiguration($configuration);
 
-        return $this->sellerCenterProxy->getResponse($sellerCenterRequest)->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
     }
 }

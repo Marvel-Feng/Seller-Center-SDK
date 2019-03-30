@@ -2,8 +2,10 @@
 
 namespace SellerCenter\Http;
 
+use Exception;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Handler\ResponseHandler;
+use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
@@ -24,21 +26,19 @@ class Client
     const QUERY_PARAMETER_FORMAT    = 'Format';
 
     // Request Format
-    const FORMAT_JSON    = 'JSON';
-    const FORMAT_XML     = 'XML';
-    const DEFAULT_FORMAT = self::FORMAT_JSON;
-
-    static $MAX_ATTEMPTS_DELAY         = 5;
-    static $MIN_ATTEMPTS_DELAY         = 1;
-
+    const FORMAT_JSON                = 'JSON';
+    const FORMAT_XML                 = 'XML';
+    const DEFAULT_FORMAT             = self::FORMAT_JSON;
     const REQUEST_ATTEMPTS_THRESHOLD = 10;
+    const ERROR_RESPONSE             = 'ErrorResponse';
+    const ERROR_RESPONSE_HEAD        = 'Head';
 
     // Error Data
-    const ERROR_RESPONSE               = 'ErrorResponse';
-    const ERROR_RESPONSE_HEAD          = 'Head';
     const ERROR_RESPONSE_ERROR_CODE    = 'ErrorCode';
     const ERROR_RESPONSE_ERROR_MESSAGE = 'ErrorMessage';
 
+    const MAX_ATTEMPTS_DELAY           = 5;
+    const MIN_ATTEMPTS_DELAY           = 1;
 
     /** @var Client $httpClient */
     private $httpClient;
@@ -57,7 +57,7 @@ class Client
      *
      * @return mixed
      * @throws GuzzleException
-     * @throws \Exception
+     * @throws Exception
      */
     public function request(Request $sellerCenterRequest): GuzzleResponse
     {
@@ -77,14 +77,14 @@ class Client
     }
 
     /**
-     * @param Request $sellerCenterRequest
+     * @param Configuration $configuration
+     * @param Request       $sellerCenterRequest
      *
      * @return GuzzleResponse
-     * @throws SellerCenterException
      * @throws GuzzleException
-     * @throws \Exception
+     * @throws SellerCenterException
      */
-    public function sendSellerCenterRequest(Request $sellerCenterRequest): GuzzleResponse
+    public function sendSellerCenterRequest(Configuration $configuration, Request $sellerCenterRequest): GuzzleResponse
     {
         $response         = null;
         $errorMsg         = null;
@@ -92,7 +92,7 @@ class Client
         $attemptsCount    = 0;
         $response404Count = 0;
         $breakCase        = false;
-        while (!$breakCase && $attemptsCount < self::REQUEST_ATTEMPTS_THRESHOLD && $response404Count < 2) {
+        while (!$breakCase && $attemptsCount < $configuration->getRequestAttemptsThreshold() && $response404Count < 2) {
             $attemptsCount++;
             try {
                 $response          = $this->request($sellerCenterRequest);
@@ -138,14 +138,14 @@ class Client
                     }
                     $response404Count += ($responseStatusCode == Response::HTTP_NOT_FOUND);
                 }
-                sleep(rand(self::$MIN_ATTEMPTS_DELAY, self::$MAX_ATTEMPTS_DELAY));
+                sleep(rand($configuration->getMinAttemptsDelay(), $configuration->getMaxAttemptsDelay()));
             }
         }
         if (isset($response) && !$breakCase) {
             return $response;
         } else {
             $exception = new SellerCenterException($errorMsg, $errorCode, $sellerCenterRequest->getAction());
-            $this->responseHandler->emergencyLog($sellerCenterRequest, $exception, $attemptsCount);
+            $this->responseHandler->emergencyLog($configuration,$sellerCenterRequest, $exception, $attemptsCount);
             throw $exception;
         }
     }
@@ -154,7 +154,7 @@ class Client
      * @param Request $sellerCenterRequest
      *
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function getRequestOptions(Request $sellerCenterRequest): array
     {
@@ -176,7 +176,7 @@ class Client
      * @param Request $sellerCenterRequest
      *
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function getSignedParameters(Request $sellerCenterRequest): array
     {
