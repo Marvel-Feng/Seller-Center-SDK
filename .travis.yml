@@ -7,10 +7,11 @@ install: composer install
 env:
     - CODECOV_TOKEN="47d13c55-5188-40f2-9365-2a9d8a28d629"
 
-before_script: pecl install xdebug-2.6.0beta1
+before_script:
+    - phpenv config-rm xdebug.ini
 
 script:
-    - make cover
+    - phpdbg -qrr vendor/bin/simple-phpunit --coverage-clover=coverage.xml
 
 after_success:
     # Submit coverage report to https://codecov.io
