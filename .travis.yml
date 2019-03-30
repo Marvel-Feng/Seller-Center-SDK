@@ -7,7 +7,7 @@ install: composer install
 env:
     - CODECOV_TOKEN="47d13c55-5188-40f2-9365-2a9d8a28d629"
 
-before_script: pecl install xdebug
+before_script: pecl install xdebug-2.6.0beta1
 
 script:
     - make cover
