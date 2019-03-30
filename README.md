@@ -60,7 +60,11 @@ class Example
     }
     
     public function index() {
-        $products = $this->productService->getProducts(new Configuration('https://sellercenter-api.x.com.y','email@example.com','apiKey','apiPassword','username','v1'),[]);
+        $configuration = new Configuration('https://sellercenter-api.x.com.y','email@example.com','apiKey','apiPassword','username','v1');
+        $configuration->setMinAttemptsDelay(1);  // in seconds default : 1
+        $configuration->setMaxAttemptsDelay(10);  // in seconds default : 5
+        $configuration->setRequestAttemptsThreshold(15) ; // number of failure retries default : 10  
+        $products = $this->productService->getProducts($configuration,[]);
     }
 }
 ```
