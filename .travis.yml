@@ -3,3 +3,15 @@ php:
     - '7.1'
     - '7.2'
 install: composer install
+
+env:
+    - CODECOV_TOKEN="47d13c55-5188-40f2-9365-2a9d8a28d629"
+
+before_script: pecl install xdebug
+
+script:
+    - vendor/bin/simple-phpunit --coverage-clover=coverage.xml
+
+after_success:
+    # Submit coverage report to https://codecov.io
+    - bash <(curl -s https://codecov.io/bash)
