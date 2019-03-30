@@ -327,16 +327,16 @@ class Request
     }
 
     /**
-     * @param Configuration $account
+     * @param Configuration $configuration
      *
      */
-    public function addConfiguration(Configuration $account)
+    public function addConfiguration(Configuration $configuration)
     {
-        $this->setBaseUrl($account->getUrl());
-        $this->setApiKey($account->getApiKey());
-        $this->setUsername($account->getUsername());
-        $this->setPassword($account->getApiPassword());
-        $this->setVersion($account->getVersion());
-        $this->setUserId($account->getEmail());
+        $this->setBaseUrl($configuration->getUrl());
+        $this->setApiKey($configuration->getApiKey());
+        $this->setUsername($configuration->getUsername());
+        $this->setPassword($configuration->getApiPassword());
+        $this->setVersion($configuration->getVersion());
+        $this->setUserId($configuration->getEmail());
     }
 }
