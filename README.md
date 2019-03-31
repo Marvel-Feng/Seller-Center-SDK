@@ -44,6 +44,15 @@ https://sellerapi.sellercenter.net/docs
     * `createImages`
 
 
+## Dependency Injection
+
+Be sure to attach services to the container for example using **Symfony** ,
+add this to the services.yaml 
+
+```
+SellerCenter\:
+        resource: '../vendor/edfa3ly-backend/seller-center-sdk/src/*'
+```
 ## Usage
 
 Dependency Injection is encouraged for services usage 
