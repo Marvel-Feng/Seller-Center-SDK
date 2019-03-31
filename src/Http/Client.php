@@ -3,6 +3,7 @@
 namespace SellerCenter\Http;
 
 use Exception;
+use Illuminate\Support\Arr;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Model\Configuration;
@@ -100,7 +101,7 @@ class Client
                         ->getContents(),
                     true
                 );
-                $errorResponseHead = array_get(
+                $errorResponseHead = Arr::get(
                     $responseJson,
                     self::ERROR_RESPONSE.'.'.self::ERROR_RESPONSE_HEAD,
                     false

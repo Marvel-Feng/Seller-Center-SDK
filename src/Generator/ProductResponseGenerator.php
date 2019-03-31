@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\Product;
 
 class ProductResponseGenerator extends ResponseGenerator
@@ -22,7 +23,7 @@ class ProductResponseGenerator extends ResponseGenerator
     public function makeBody(array $body): array
     {
         $products     = [];
-        $productsBody = array_get($body, Product::SC_PRODUCTS.'.'.Product::SC_PRODUCT, []);
+        $productsBody = Arr::get($body, Product::SC_PRODUCTS.'.'.Product::SC_PRODUCT, []);
         if (!empty($productsBody)) {
             $productsBody = $this->to2DArrayIfNot($productsBody);
             foreach ($productsBody as $product) {

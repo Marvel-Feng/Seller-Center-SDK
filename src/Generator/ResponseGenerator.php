@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Hydrator\Hydrator;
 use SellerCenter\Model\Order;
 use SellerCenter\Model\OrderItem;
@@ -43,10 +44,10 @@ abstract class ResponseGenerator
     protected function makeHead(array $head): ResponseHead
     {
         return new ResponseHead(
-            array_get($head, ResponseHead::SC_HEAD_REQUEST_ID),
-            array_get($head, ResponseHead::SC_HEAD_REQUEST_ACTION),
-            array_get($head, ResponseHead::SC_HEAD_RESPONSE_TYPE),
-            new \DateTime(array_get($head, ResponseHead::SC_HEAD_RESPONSE_TIMESTAMP))
+            Arr::get($head, ResponseHead::SC_HEAD_REQUEST_ID),
+            Arr::get($head, ResponseHead::SC_HEAD_REQUEST_ACTION),
+            Arr::get($head, ResponseHead::SC_HEAD_RESPONSE_TYPE),
+            new \DateTime(Arr::get($head, ResponseHead::SC_HEAD_RESPONSE_TIMESTAMP))
         );
     }
 
@@ -66,8 +67,8 @@ abstract class ResponseGenerator
         $responseBody = SuccessResponse::SC_SUCCESS_RESPONSE.'.'
             .SuccessResponse::SC_RESPONSE_BODY;
 
-        $head = array_get($response, $responseHead, []);
-        $body = array_get($response, $responseBody, []);
+        $head = Arr::get($response, $responseHead, []);
+        $body = Arr::get($response, $responseBody, []);
 
         return (new SuccessResponse())
             ->setBody(

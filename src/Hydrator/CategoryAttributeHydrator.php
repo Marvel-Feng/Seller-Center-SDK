@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Hydrator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\CategoryAttribute;
 
 class CategoryAttributeHydrator implements Hydrator
@@ -19,7 +20,7 @@ class CategoryAttributeHydrator implements Hydrator
      */
     public function hydrate(array $data, &$newCategory)
     {
-        $options = array_get(
+        $options = Arr::get(
             $data,
             CategoryAttribute::SC_CATEGORY_MULTIPLE_OPTIONS.'.'
             .CategoryAttribute::SC_CATEGORY_SINGLE_OPTION,

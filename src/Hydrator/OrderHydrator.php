@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Hydrator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Generator\ResponseGenerator;
 use SellerCenter\Model\AddressShipping;
 use SellerCenter\Model\Order;
@@ -25,7 +26,7 @@ class OrderHydrator implements Hydrator
     public function hydrate(array $data, &$order)
     {
         $extractor = function ($key) use ($data) {
-            return array_get($data, $key);
+            return Arr::get($data, $key);
         };
         $order->setOrderId($extractor(Order::SC_ORDER_ID));
         $order->setOrderNumber($extractor(Order::SC_ORDER_NUMBER));
@@ -52,16 +53,16 @@ class OrderHydrator implements Hydrator
             $addressShippingBody = $extractor(Order::SC_ORDER_ADDRESS_SHIPPING);
             if (isset($addressShippingBody)) {
                 $addressShipping->setFirstName(
-                    array_get($addressShippingBody, AddressShipping::SC_SHIPPING_FIRST_NAME)
+                    Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_FIRST_NAME)
                 );
-                $addressShipping->setLastName(array_get($addressShippingBody, AddressShipping::SC_SHIPPING_LAST_NAME));
-                $addressShipping->setPhone(array_get($addressShippingBody, AddressShipping::SC_SHIPPING_PHONE));
-                $addressShipping->setAddress1(array_get($addressShippingBody, AddressShipping::SC_SHIPPING_ADDRESS_1));
+                $addressShipping->setLastName(Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_LAST_NAME));
+                $addressShipping->setPhone(Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_PHONE));
+                $addressShipping->setAddress1(Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_ADDRESS_1));
                 $addressShipping->setCustomerEmail(
-                    array_get($addressShippingBody, AddressShipping::SC_SHIPPING_CUSTOMER_EMAIL)
+                    Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_CUSTOMER_EMAIL)
                 );
-                $addressShipping->setCity(array_get($addressShippingBody, AddressShipping::SC_SHIPPING_CITY));
-                $addressShipping->setCountry(array_get($addressShippingBody, AddressShipping::SC_SHIPPING_COUNTRY));
+                $addressShipping->setCity(Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_CITY));
+                $addressShipping->setCountry(Arr::get($addressShippingBody, AddressShipping::SC_SHIPPING_COUNTRY));
             }
             $order->setShippingAddress($addressShipping);
             $order->setStatus($extractor(Order::SC_ORDER_STATUSES.'.'.Order::SC_ORDER_STATUS));

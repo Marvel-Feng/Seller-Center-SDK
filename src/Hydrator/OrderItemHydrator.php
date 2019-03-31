@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Hydrator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\OrderItem;
 
 class OrderItemHydrator implements Hydrator
@@ -22,7 +23,7 @@ class OrderItemHydrator implements Hydrator
     public function hydrate(array $data, &$orderItem)
     {
         $extractor = function ($key) use ($data) {
-            return array_get($data, $key);
+            return Arr::get($data, $key);
         };
         $orderItem->setOrderItemId($extractor(OrderItem::SC_ORDER_ITEM_ID));
         $orderItem->setOrderId($extractor(OrderItem::SC_ORDER_ITEM_ORDER_ID));

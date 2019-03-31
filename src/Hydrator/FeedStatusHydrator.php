@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Hydrator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Generator\ResponseGenerator;
 use SellerCenter\Model\FeedError;
 use SellerCenter\Model\FeedStatus;
@@ -29,14 +30,14 @@ class FeedStatusHydrator implements Hydrator
         $newFeedStatus->setProcessedRecords(
             $data[FeedStatus::SC_FEED_STATUS_FEED_PROCESSED_RECORDS]
         );
-        $feedWarningsBody = array_get(
+        $feedWarningsBody = Arr::get(
             $data,
             FeedStatus::SC_FEED_STATUS_FEED_WARNINGS.'.'
             .FeedStatus::SC_FEED_STATUS_FEED_WARNING,
             []
         );
         $feedWarningsBody = ResponseGenerator::to2DArrayIfNot($feedWarningsBody);
-        $feedErrorsBody   = array_get(
+        $feedErrorsBody   = Arr::get(
             $data,
             FeedStatus::SC_FEED_STATUS_FEED_ERRORS.'.'
             .FeedStatus::SC_FEED_STATUS_FEED_ERROR,

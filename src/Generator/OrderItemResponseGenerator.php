@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\OrderItem;
 
 class OrderItemResponseGenerator extends ResponseGenerator
@@ -21,7 +22,7 @@ class OrderItemResponseGenerator extends ResponseGenerator
     protected function makeBody(array $body): array
     {
         $orderItems     = [];
-        $orderItemsBody = array_get(
+        $orderItemsBody = Arr::get(
             $body,
             OrderItem::SC_ORDER_ITEM_ORDER_ITEMS.'.'.OrderItem::SC_ORDER_ITEM_ORDER_ITEM,
             []

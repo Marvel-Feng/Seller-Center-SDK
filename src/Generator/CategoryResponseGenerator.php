@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\CategoryAttribute;
 
 class CategoryResponseGenerator extends ResponseGenerator
@@ -21,7 +22,7 @@ class CategoryResponseGenerator extends ResponseGenerator
     public function makeBody(array $body): array
     {
         $attributes     = [];
-        $attributesBody = array_get($body, CategoryAttribute::SC_CATEGORY_ATTRIBUTE, []);
+        $attributesBody = Arr::get($body, CategoryAttribute::SC_CATEGORY_ATTRIBUTE, []);
         if (!empty($attributesBody)) {
             $attributesBody = $this->to2DArrayIfNot($attributesBody);
             foreach ($attributesBody as $attribute) {

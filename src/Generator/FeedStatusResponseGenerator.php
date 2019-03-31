@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\FeedStatus;
 
 class FeedStatusResponseGenerator extends ResponseGenerator
@@ -22,7 +23,7 @@ class FeedStatusResponseGenerator extends ResponseGenerator
     {
         $sellerCenterFeedStatus = new FeedStatus();
 
-        $feedsBody = array_get($body, FeedStatus::SC_FEED_STATUS_FEED_DETAIL, null);
+        $feedsBody = Arr::get($body, FeedStatus::SC_FEED_STATUS_FEED_DETAIL, null);
 
         if (isset($feedsBody))
             $this->hydrator->hydrate($feedsBody,$sellerCenterFeedStatus);

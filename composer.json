@@ -9,8 +9,8 @@
     "ext-json": "*",
     "ext-dom": "*",
     "symfony/http-foundation": "^4.2",
-    "illuminate/support": "5.7",
-    "psr/log": "^1.1"
+    "psr/log": "^1.1",
+    "illuminate/support": "*"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^6.3",

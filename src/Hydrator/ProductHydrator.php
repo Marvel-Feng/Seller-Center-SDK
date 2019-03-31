@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Hydrator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\Product;
 
 class ProductHydrator implements Hydrator
@@ -31,7 +32,7 @@ class ProductHydrator implements Hydrator
         $newProduct->setParentSku($product[Product::SC_PRODUCT_PARENT_SKU]);
         $newProduct->setQuantity($product[Product::SC_PRODUCT_QUANTITY]);
         $newProduct->setFulfillmentByNonSellable(
-            array_get($product,Product::SC_PRODUCT_FULLFILLMENT)
+            Arr::get($product,Product::SC_PRODUCT_FULLFILLMENT)
         );
         $newProduct->setAvailable($product[Product::SC_PRODUCT_AVAILABLE]);
         $newProduct->setPrice($product[Product::SC_PRODUCT_PRICE]);
@@ -50,7 +51,7 @@ class ProductHydrator implements Hydrator
         $newProduct->setMainImage($product[Product::SC_PRODUCT_MAIN_IMAGE]);
         if (!empty($product[Product::SC_PRODUCT_MULTIPLE_IMAGES])) {
             $images = array_values(
-                array_get(
+                Arr::get(
                     $product,
                     Product::SC_PRODUCT_MULTIPLE_IMAGES,
                     []
@@ -60,23 +61,23 @@ class ProductHydrator implements Hydrator
         }
         $newProduct->setPrimaryCategory($product[Product::SC_PRODUCT_PRIMARY_CATEGORY]);
             $newProduct->setCategories(
-                array_get($product,Product::SC_PRODUCT_CATEGORIES)
+                Arr::get($product,Product::SC_PRODUCT_CATEGORIES)
             );
         $productData = $product[Product::SC_PRODUCT_DATA];
         $newProduct->setMainMaterial(
-            array_get($productData,Product::SC_PRODUCT_MAIN_MATERIAL)
+            Arr::get($productData,Product::SC_PRODUCT_MAIN_MATERIAL)
         );
         $newProduct->setProductWeight(
-            array_get($productData,Product::SC_PRODUCT_WEIGHT)
+            Arr::get($productData,Product::SC_PRODUCT_WEIGHT)
         );
         $newProduct->setDescriptionArEG(
-            array_get($productData,Product::SC_PRODUCT_DESCRIPTION_AR_EG)
+            Arr::get($productData,Product::SC_PRODUCT_DESCRIPTION_AR_EG)
         );
         $newProduct->setNameArEG(
-          array_get($productData,Product::SC_PRODUCT_NAME_AR_EG)
+          Arr::get($productData,Product::SC_PRODUCT_NAME_AR_EG)
         );
         $newProduct->setColor(
-            array_get($productData,Product::SC_PRODUCT_COLOR)
+            Arr::get($productData,Product::SC_PRODUCT_COLOR)
         );
     }
 }

@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Generator;
 
+use Illuminate\Support\Arr;
 use SellerCenter\Model\Order;
 
 class OrderResponseGenerator extends ResponseGenerator
@@ -21,7 +22,7 @@ class OrderResponseGenerator extends ResponseGenerator
     protected function makeBody(array $body): array
     {
         $orders     = [];
-        $ordersBody = array_get($body, Order::SC_ORDERS.".".Order::SC_ORDER, []);
+        $ordersBody = Arr::get($body, Order::SC_ORDERS.".".Order::SC_ORDER, []);
         if (isset($ordersBody)) {
             $ordersBody = $this->to2DArrayIfNot($ordersBody);
             foreach ($ordersBody as $orderBody) {

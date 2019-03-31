@@ -31,27 +31,19 @@ class ResponseGeneratorFactory
      */
     public function make(string $responseType): ResponseGenerator
     {
-        $hydrator = null;
         switch ($responseType) {
             case 'Products':
-                $hydrator = new ProductResponseGenerator(new ProductHydrator());
-                break;
+                return new ProductResponseGenerator(new ProductHydrator());
             case 'Attributes':
-                $hydrator = new CategoryResponseGenerator(new CategoryAttributeHydrator());
-                break;
+                return new CategoryResponseGenerator(new CategoryAttributeHydrator());
             case 'FeedDetail':
-                $hydrator = new FeedStatusResponseGenerator(new FeedStatusHydrator());
-                break;
+                return new FeedStatusResponseGenerator(new FeedStatusHydrator());
             case $responseType == 'Order' || $responseType == 'Orders':
-                $hydrator = new OrderResponseGenerator(new OrderHydrator());
-                break;
+                return new OrderResponseGenerator(new OrderHydrator());
             case 'OrderItems':
-                $hydrator = new OrderItemResponseGenerator(new OrderItemHydrator());
-                break;
+                return new OrderItemResponseGenerator(new OrderItemHydrator());
             default:
                 throw new \InvalidArgumentException("$responseType is invalid");
         }
-
-        return $hydrator;
     }
 }

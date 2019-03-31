@@ -4,6 +4,7 @@ namespace SellerCenter\Handler;
 
 use DOMDocument;
 use Exception;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\Test\TestLogger;
@@ -120,7 +121,7 @@ class ResponseHandler
         $responseHead = SuccessResponse::SC_SUCCESS_RESPONSE.'.'
             .SuccessResponse::SC_RESPONSE_HEAD;
 
-        $responseType = array_get($response, "$responseHead.".ResponseHead::SC_HEAD_RESPONSE_TYPE);
+        $responseType = Arr::get($response, "$responseHead.".ResponseHead::SC_HEAD_RESPONSE_TYPE);
 
         $generator = $this->generatorFactory->make(
             $responseType
