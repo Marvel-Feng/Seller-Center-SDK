@@ -59,6 +59,12 @@ class Example
     }
 }
 ```
+## Logging Support 
+
+Set Configuration to enable logging
+```
+ $configuration->setLoggingEnabled(true);
+```
 
 ## How to test
 ``` bash
