@@ -18,7 +18,6 @@ use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Services\CategoryAttributeService;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CategoryAttributeServiceTest extends TestCase
 {
@@ -56,6 +55,7 @@ class CategoryAttributeServiceTest extends TestCase
      *
      * @throws SellerCenterException
      * @throws GuzzleException
+     * @throws \ReflectionException
      * @dataProvider getCategoryAttributesTestCases
      */
     public function testGetCategoryAttributes(array $data)
@@ -75,9 +75,11 @@ class CategoryAttributeServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $categoryService = new CategoryAttributeService(
-            $sellerCenterProxyMock, $this->createMock(ValidatorInterface::class)
-        );
+        $categoryService = new CategoryAttributeService();
+        $reflection = new \ReflectionClass($categoryService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($categoryService,$sellerCenterProxyMock);
         $response        = $categoryService->getCategoryAttributes(
             $config,
             $data[Request::QUERY_PARAMETER_PRIMARY_CATEGORY]

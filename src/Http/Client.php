@@ -46,10 +46,10 @@ class Client
     /** @var ResponseHandler $responseHandler */
     private $responseHandler;
 
-    public function __construct(ResponseHandler $responseHandler)
+    public function __construct()
     {
         $this->httpClient      = new GuzzleClient();
-        $this->responseHandler = $responseHandler;
+        $this->responseHandler = new ResponseHandler();
     }
 
     /**
@@ -67,8 +67,7 @@ class Client
             $sellerCenterRequest->getUrl(),
             $options
         );
-        if ($response->getBody()
-            ->eof()) {
+        if ($response->getBody()->eof()) {
             $response->getBody()
                 ->rewind();
         }
@@ -145,7 +144,9 @@ class Client
             return $response;
         } else {
             $exception = new SellerCenterException($errorMsg, $errorCode, $sellerCenterRequest->getAction());
-            $this->responseHandler->emergencyLog($configuration,$sellerCenterRequest, $exception, $attemptsCount);
+            if ($configuration->isLoggingEnabled()) {
+                $this->responseHandler->emergencyLog($configuration, $sellerCenterRequest, $exception, $attemptsCount);
+            }
             throw $exception;
         }
     }
@@ -187,8 +188,7 @@ class Client
         $parameters[self::QUERY_PARAMETER_USER_ID]   = $sellerCenterRequest->getUserId();
         $parameters[self::QUERY_PARAMETER_VERSION]   = $sellerCenterRequest->getVersion();
         $parameters[self::QUERY_PARAMETER_TIMESTAMP] = $now->format(DateTime::ISO8601);
-        $parameters[self::QUERY_PARAMETER_FORMAT]    = $parameters[self::QUERY_PARAMETER_FORMAT] ??
-            self::DEFAULT_FORMAT;
+        $parameters[self::QUERY_PARAMETER_FORMAT]    = $parameters[self::QUERY_PARAMETER_FORMAT] ?? self::DEFAULT_FORMAT;
         ksort($parameters);
         $encoded = [];
         foreach ($parameters as $name => $value) {

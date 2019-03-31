@@ -11,8 +11,6 @@ namespace SellerCenter\tests;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\NullLogger;
-use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Model\SuccessResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +27,7 @@ class ResponseHandlerTest extends TestCase
             $data,
             $dataName
         );
-        $this->responseHandler = new ResponseHandler(
-            new NullLogger(),
-            new ResponseGeneratorFactory()
-        );
+        $this->responseHandler = new ResponseHandler();
     }
 
     /** @dataProvider getGenerateResponseTestCases

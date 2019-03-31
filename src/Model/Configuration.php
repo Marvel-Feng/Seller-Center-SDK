@@ -61,6 +61,11 @@ class Configuration
     protected $requestAttemptsThreshold = Client::REQUEST_ATTEMPTS_THRESHOLD;
 
     /**
+     * @var bool $loggingEnabled
+     */
+    protected $loggingEnabled = false;
+
+    /**
      * Configuration constructor.
      *
      * @param string $url
@@ -228,6 +233,22 @@ class Configuration
     public function setRequestAttemptsThreshold(int $requestAttemptsThreshold): void
     {
         $this->requestAttemptsThreshold = $requestAttemptsThreshold;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLoggingEnabled(): bool
+    {
+        return $this->loggingEnabled;
+    }
+
+    /**
+     * @param bool $loggingEnabled
+     */
+    public function setLoggingEnabled(bool $loggingEnabled): void
+    {
+        $this->loggingEnabled = $loggingEnabled;
     }
 
 }

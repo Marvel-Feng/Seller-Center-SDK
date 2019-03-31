@@ -30,6 +30,7 @@ class ProductServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      */
     public function testCreateProducts(Configuration $config, string $xml)
     {
@@ -54,7 +55,14 @@ class ProductServiceTest extends TestCase
         $sellerCenterRequest->setAction(Request::ACTION_PRODUCT_CREATE);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $productService = new ProductService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+
+        $productService = new ProductService();
+
+        $reflection = new \ReflectionClass($productService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($productService,$sellerCenterProxyMock);
+
         $response       = $productService->createProducts($config, $xml);
         $this->assertInternalType('array', $response->getBody());
     }
@@ -64,6 +72,7 @@ class ProductServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider getProductsTestCases
      */
     public function testGetProducts(array $data)
@@ -88,7 +97,12 @@ class ProductServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $productService = new ProductService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $productService = new ProductService();
+
+        $reflection = new \ReflectionClass($productService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($productService,$sellerCenterProxyMock);
         $response       = $productService->getProducts(
             $config,
             [
@@ -111,6 +125,7 @@ class ProductServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      */
     public function testUpdateProducts(Configuration $config, string $xml)
     {
@@ -130,7 +145,12 @@ class ProductServiceTest extends TestCase
         $sellerCenterRequest->setAction(Request::ACTION_PRODUCT_UPDATE);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $productService = new ProductService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $productService = new ProductService();
+
+        $reflection = new \ReflectionClass($productService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($productService,$sellerCenterProxyMock);
         $response       = $productService->updateProducts($config, $xml);
         $this->assertInternalType('array', $response->getBody());
     }

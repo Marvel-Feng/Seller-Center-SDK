@@ -44,36 +44,18 @@ https://sellerapi.sellercenter.net/docs
     * `createImages`
 
 
-## Dependency Injection
-
-Be sure to attach services to the container for example using **Symfony** ,
-add this to the services.yaml 
-
-```
-SellerCenter\:
-        resource: '../vendor/edfa3ly-backend/seller-center-sdk/src/*'
-```
 ## Usage
 
-Dependency Injection is encouraged for services usage 
 ```
 class Example
-{
-     /**
-      * @var ProductService $productService
-      */
-    protected $productService;
-    
-    public function __construct(ProductService $productService) {
-        $this->productService  = $productService;
-    }
-    
+{  
     public function index() {
         $configuration = new Configuration('https://sellercenter-api.x.com.y','email@example.com','apiKey','apiPassword','username','v1');
         $configuration->setMinAttemptsDelay(1);  // in seconds default : 1
         $configuration->setMaxAttemptsDelay(10);  // in seconds default : 5
         $configuration->setRequestAttemptsThreshold(15) ; // number of failure retries default : 10  
-        $products = $this->productService->getProducts($configuration,[]);
+        $productService = new ProductService();
+        $products = $productService->getProducts($configuration,[]);
     }
 }
 ```

@@ -18,7 +18,6 @@ use SellerCenter\Model\FeedStatus;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Services\FeedService;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FeedServiceTest extends TestCase
 {
@@ -27,6 +26,7 @@ class FeedServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider getFeedStatusTestCases
      */
     public function testGetFeedStatus(array $data)
@@ -44,7 +44,11 @@ class FeedServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse',[$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $feedService = new FeedService($sellerCenterProxyMock,$this->createMock(ValidatorInterface::class));
+        $feedService = new FeedService();
+        $reflection = new \ReflectionClass($feedService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($feedService,$sellerCenterProxyMock);
         $response = $feedService->getFeedStatus(
             $config,
            $data[Request::QUERY_PARAMETER_FEED_ID]

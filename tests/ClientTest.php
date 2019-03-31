@@ -16,11 +16,9 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
 use ReflectionClass;
 use ReflectionException;
 use SellerCenter\Exception\SellerCenterException;
-use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Http\Client;
 use SellerCenter\Model\Configuration;
@@ -38,10 +36,7 @@ class ClientTest extends TestCase
             $data,
             $dataName
         );
-        $this->responseHandler = new ResponseHandler(
-            new NullLogger(),
-            new ResponseGeneratorFactory()
-        );
+        $this->responseHandler = new ResponseHandler();
     }
 
     /**
@@ -93,7 +88,7 @@ class ClientTest extends TestCase
         }
         $configuration->setMaxAttemptsDelay(0);
         $configuration->setMinAttemptsDelay(0);
-        $client = new Client($this->responseHandler);
+        $client = new Client();
         $reflection       = new ReflectionClass($client);
         $guzzleProperty = $reflection->getProperty('httpClient');
         $guzzleProperty->setAccessible(true);

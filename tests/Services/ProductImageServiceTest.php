@@ -17,7 +17,6 @@ use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Services\ProductImageService;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductImageServiceTest extends TestCase
 {
@@ -29,6 +28,7 @@ class ProductImageServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      */
     public function testCreateProducts(Configuration $config,string $xml)
     {
@@ -51,8 +51,13 @@ class ProductImageServiceTest extends TestCase
         $sellerCenterRequest->setBody($xml);
         $sellerCenterProxyMock->shouldReceive('getResponse',[$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $productService = new ProductImageService($sellerCenterProxyMock,$this->createMock(ValidatorInterface::class));
-        $response = $productService->createImages($config,$xml);
+        $productImageService = new ProductImageService();
+
+        $reflection = new \ReflectionClass($productImageService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($productImageService,$sellerCenterProxyMock);
+        $response = $productImageService->createImages($config,$xml);
         $this->assertInternalType('array',$response->getBody());
     }
 

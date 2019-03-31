@@ -10,9 +10,7 @@ namespace SellerCenter\tests;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
 use SellerCenter\Exception\SellerCenterException;
-use SellerCenter\Factory\ResponseGeneratorFactory;
 use SellerCenter\Handler\ResponseHandler;
 use SellerCenter\Http\Client;
 use SellerCenter\Model\Configuration;
@@ -34,10 +32,7 @@ class ProxyTest extends TestCase
             $data,
             $dataName
         );
-        $this->responseHandler = new ResponseHandler(
-            new NullLogger(),
-            new ResponseGeneratorFactory()
-        );
+        $this->responseHandler = new ResponseHandler();
     }
 
     public function getResponseTestCases()
@@ -56,17 +51,22 @@ class ProxyTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider getResponseTestCases
      */
     public function testGetResponse(string $jsonBody)
     {
-        $clientServiceMock = m::mock(Client::class)
+        $client = m::mock(Client::class)
             ->allows('sendSellerCenterRequest')
             ->andReturn(
                 new Response(200, [], $jsonBody)
             )
             ->getMock();
-        $proxyService      = new SellerCenterProxy($clientServiceMock, $this->responseHandler);
+        $proxyService      = new SellerCenterProxy();
+        $reflection = new \ReflectionClass($proxyService);
+        $property = $reflection->getProperty('sellerCenterClient');
+        $property->setAccessible(true);
+        $property->setValue($proxyService,$client);
         $response          = $proxyService->getResponse(m::mock(Configuration::class),m::mock(Request::class));
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }

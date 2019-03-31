@@ -9,6 +9,7 @@
 namespace SellerCenter\Services;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Validator;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Model\Configuration;
 use SellerCenter\Model\CategoryAttribute;
@@ -24,18 +25,10 @@ class CategoryAttributeService
     /** @var ValidatorInterface $validator */
     protected $validator;
 
-    /**
-     * SellerCenterService constructor.
-     *
-     * @param SellerCenterProxy  $sellerCenterProxy
-     * @param ValidatorInterface $validator
-     */
-    public function __construct(
-        SellerCenterProxy $sellerCenterProxy,
-        ValidatorInterface $validator
-    ) {
-        $this->sellerCenterProxy   = $sellerCenterProxy;
-        $this->validator           = $validator;
+    public function __construct()
+    {
+        $this->sellerCenterProxy = new SellerCenterProxy();
+        $this->validator         = new Validator();
     }
 
     /**
@@ -46,10 +39,9 @@ class CategoryAttributeService
      * @throws GuzzleException
      * @throws SellerCenterException
      */
-    public function getCategoryAttributes(Configuration $configuration,int $categoryId): array
+    public function getCategoryAttributes(Configuration $configuration, int $categoryId): array
     {
         $sellerCenterRequest = new Request();
-
         $sellerCenterRequest->setParameters(
             [
                 Request::QUERY_PARAMETER_ACTION           => Request::ACTION_GET_CATEGORY_ATTRIBUTES,
@@ -58,6 +50,6 @@ class CategoryAttributeService
         );
         $sellerCenterRequest->setAction(Request::ACTION_GET_CATEGORY_ATTRIBUTES);
         $sellerCenterRequest->addConfiguration($configuration);
-        return $this->sellerCenterProxy->getResponse($configuration,$sellerCenterRequest)->getBody();
+        return $this->sellerCenterProxy->getResponse($configuration, $sellerCenterRequest)->getBody();
     }
 }

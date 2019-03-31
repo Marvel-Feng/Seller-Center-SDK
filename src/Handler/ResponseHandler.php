@@ -3,9 +3,12 @@
 namespace SellerCenter\Handler;
 
 use DOMDocument;
+use Exception;
+use InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Log\Test\TestLogger;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Factory\ResponseGeneratorFactory;
-use SellerCenter\Http\Client;
 use SellerCenter\Model\Configuration;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\ResponseHead;
@@ -47,18 +50,17 @@ class ResponseHandler
     const INTERNAl_APPLICATION_ERROR_CODE      = 1000;
     const EMPTY_REQUEST_ERROR_CODE             = 30;
     /** Break List */
-    const BREAK_LIST
-        = [
-            self::MISSING_PARAMETER_CODE,
-            self::INVALID_VERSION_CODE,
-            self::INVALID_TIME_STAMP_FORMAT_CODE,
-            self::INVALID_REQUEST_FORMAT_CODE,
-            self::LOGIN_FAILED_SIGNATURE_MISMATCH_CODE,
-            self::INVALID_FEED_ID_ERROR_CODE,
-            self::EMPTY_REQUEST_ERROR_CODE,
-            self::INVALID_ACTION_CODE,
-            self::INVALID_VERSION_CODE_2,
-        ];
+    const BREAK_LIST = [
+        self::MISSING_PARAMETER_CODE,
+        self::INVALID_VERSION_CODE,
+        self::INVALID_TIME_STAMP_FORMAT_CODE,
+        self::INVALID_REQUEST_FORMAT_CODE,
+        self::LOGIN_FAILED_SIGNATURE_MISMATCH_CODE,
+        self::INVALID_FEED_ID_ERROR_CODE,
+        self::EMPTY_REQUEST_ERROR_CODE,
+        self::INVALID_ACTION_CODE,
+        self::INVALID_VERSION_CODE_2,
+    ];
     /** @var LoggerInterface $loggerInterface */
     private $loggerInterface;
 
@@ -68,13 +70,11 @@ class ResponseHandler
     /**
      * ExceptionHandler constructor.
      *
-     * @param LoggerInterface          $loggerInterface
-     * @param ResponseGeneratorFactory $generatorFactory
      */
-    public function __construct(LoggerInterface $loggerInterface, ResponseGeneratorFactory $generatorFactory)
+    public function __construct()
     {
-        $this->loggerInterface  = $loggerInterface;
-        $this->generatorFactory = $generatorFactory;
+        $this->loggerInterface  = new TestLogger();
+        $this->generatorFactory = new ResponseGeneratorFactory();
     }
 
     /**
@@ -112,8 +112,8 @@ class ResponseHandler
      * @param array $response
      *
      * @return SuccessResponse
-     * @throws \Exception
-     * @throws \InvalidArgumentException
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function generateSellerCenterSuccessResponse(array $response): SuccessResponse
     {
@@ -140,8 +140,8 @@ class ResponseHandler
     }
 
     /**
-     * @param mixed|\Psr\Http\Message\ResponseInterface $response
-     * @param string                                    $responseBody
+     * @param mixed|ResponseInterface $response
+     * @param string                  $responseBody
      *
      * @return bool
      */

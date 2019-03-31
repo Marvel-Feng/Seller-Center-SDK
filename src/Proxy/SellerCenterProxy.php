@@ -19,16 +19,10 @@ class SellerCenterProxy
     /** @var ResponseHandler $responseHandler */
     private $responseHandler;
 
-    /**
-     * SellerCenterProxy constructor.
-     *
-     * @param Client          $sellerCenterClient
-     * @param ResponseHandler $responseHandler
-     */
-    public function __construct(Client $sellerCenterClient, ResponseHandler $responseHandler)
+    public function __construct()
     {
-        $this->sellerCenterClient = $sellerCenterClient;
-        $this->responseHandler    = $responseHandler;
+        $this->sellerCenterClient = new Client();
+        $this->responseHandler    = new ResponseHandler();
     }
 
     /**
@@ -43,8 +37,7 @@ class SellerCenterProxy
     public function getResponse(Configuration $configuration, Request $sellerCenterRequest): SuccessResponse
     {
         $jsonResponse = json_decode(
-            $this->sellerCenterClient->sendSellerCenterRequest($configuration, $sellerCenterRequest)
-                ->getBody(),
+            $this->sellerCenterClient->sendSellerCenterRequest($configuration, $sellerCenterRequest)->getBody(),
             true
         );
 

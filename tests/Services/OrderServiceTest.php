@@ -19,7 +19,6 @@ use SellerCenter\Model\OrderItem;
 use SellerCenter\Model\Request;
 use SellerCenter\Model\SuccessResponse;
 use SellerCenter\Services\OrderService;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class OrderServiceTest extends TestCase
 {
@@ -28,6 +27,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws SellerCenterException
      * @throws GuzzleException
+     * @throws \ReflectionException
      * @dataProvider cancelOrderTestCases
      */
     public function testCancelOrder(array $data)
@@ -44,7 +44,13 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
+
         $response     = $orderService->cancelOrder(
             $config,
             $data[Request::QUERY_PARAMETER_ORDER_ITEM_ID]
@@ -56,6 +62,7 @@ class OrderServiceTest extends TestCase
      * @param array $data
      *
      * @throws GuzzleException
+     * @throws \ReflectionException
      * @dataProvider getMultipleOrderItemsTestCases
      */
     public function testGetMultipleOrderItems(array $data)
@@ -75,7 +82,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->getMultipleOrderItems(
             $config,
             $data[Request::QUERY_PARAMETER_ORDER_ID_LIST]
@@ -88,6 +100,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws SellerCenterException
      * @throws GuzzleException
+     * @throws \ReflectionException
      * @dataProvider getOrderTestCases
      */
     public function testGetOrder(array $data)
@@ -107,7 +120,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->getOrder(
             $config,
             $data[Request::QUERY_PARAMETER_ORDER_ID]
@@ -120,6 +138,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider getOrderItemsTestCases
      */
     public function testGetOrderItems(array $data)
@@ -139,7 +158,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->getOrderItems(
             $config,
             $data[Request::QUERY_PARAMETER_ORDER_ID]
@@ -152,6 +176,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws SellerCenterException
      * @throws GuzzleException
+     * @throws \ReflectionException
      * @dataProvider getOrdersTestCases
      */
     public function testGetOrders(array $data)
@@ -170,7 +195,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->getOrders(
             $config,
             []
@@ -183,6 +213,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider setOrderStatusToReadyToShipTestCases
      */
     public function testSetOrderStatusReadyToShip(array $data)
@@ -203,7 +234,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->setOrderStatusToReadyToShip(
             $config,
             [
@@ -222,6 +258,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider setOrderStatusToDeliveredTestCases
      */
     public function testSetOrderStatusToDelivered(array $data)
@@ -239,7 +276,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->setOrderStatusToDelivered(
             $config,
             [
@@ -255,6 +297,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider setOrderStatusToFailedDeliveryTestCases
      */
     public function testSetOrderStatusToFailedDelivery(array $data)
@@ -272,7 +315,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->setOrderStatusToFailedDelivery(
             $config,
             [
@@ -288,6 +336,7 @@ class OrderServiceTest extends TestCase
      *
      * @throws GuzzleException
      * @throws SellerCenterException
+     * @throws \ReflectionException
      * @dataProvider setOrderStatusToShippedTestCases
      */
     public function testSetOrderStatusToShipped(array $data)
@@ -304,7 +353,12 @@ class OrderServiceTest extends TestCase
         $sellerCenterRequest->addConfiguration($config);
         $sellerCenterProxyMock->shouldReceive('getResponse', [$sellerCenterRequest])
             ->andReturn($sellerCenterSuccessResponse);
-        $orderService = new OrderService($sellerCenterProxyMock, $this->createMock(ValidatorInterface::class));
+        $orderService = new OrderService();
+
+        $reflection = new \ReflectionClass($orderService);
+        $property = $reflection->getProperty('sellerCenterProxy');
+        $property->setAccessible(true);
+        $property->setValue($orderService,$sellerCenterProxyMock);
         $response     = $orderService->setOrderStatusToShipped(
             $config,
             $data[Request::QUERY_PARAMETER_ORDER_ITEM_ID]

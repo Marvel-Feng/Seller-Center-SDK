@@ -9,6 +9,7 @@
 namespace SellerCenter\Services;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Validator;
 use SellerCenter\Exception\SellerCenterException;
 use SellerCenter\Model\Configuration;
 use SellerCenter\Model\FeedStatus;
@@ -24,18 +25,10 @@ class FeedService
     /** @var ValidatorInterface $validator */
     protected $validator;
 
-    /**
-     * SellerCenterService constructor.
-     *
-     * @param SellerCenterProxy  $sellerCenterProxy
-     * @param ValidatorInterface $validator
-     */
-    public function __construct(
-        SellerCenterProxy $sellerCenterProxy,
-        ValidatorInterface $validator
-    ) {
-        $this->sellerCenterProxy = $sellerCenterProxy;
-        $this->validator         = $validator;
+    public function __construct()
+    {
+        $this->sellerCenterProxy = new SellerCenterProxy();
+        $this->validator         = new Validator();
     }
 
     /**
