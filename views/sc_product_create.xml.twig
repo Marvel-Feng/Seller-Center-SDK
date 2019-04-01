@@ -1,0 +1,67 @@
+{% spaceless %}
+<?xml version="1.0" encoding="UTF-8" ?>
+<Request>
+    {% for product in products %}
+        {# @var product \SellerCenter\Model\Product #}
+
+        <Product>
+            <SellerSku>{{ product.sellerSku }}</SellerSku>
+
+            {% if product.parentSku is not empty %}
+                <ParentSku>{{ product.parentSku }}</ParentSku>
+            {% else %}
+                <ParentSku/>
+            {% endif %}
+
+            <Status>{{ product.status }}</Status>
+            <Name>{{ product.name }}</Name>
+
+            {% if product.variation is not empty %}
+                <Variation>{{ product.variation }}</Variation>
+            {% endif %}
+
+            <PrimaryCategory>{{ product.primaryCategory }}</PrimaryCategory>
+
+            {% if product.categories is not empty %}
+                <Categories>{{ product.categories }}</Categories>
+            {% endif %}
+
+            <Description>{{ product.description }}</Description>
+            <Brand>{{ product.brand }}</Brand>
+            <Price>{{ product.price }}</Price>
+
+            {% if product.salePrice is not empty and product.saleEndDate is not empty and product.saleStartDate is not empty %}
+                <SalePrice>{{ product.salePrice }}</SalePrice>
+                <SaleStartDate>{{ product.saleStartDate }}</SaleStartDate>
+                <SaleEndDate>{{ product.saleEndDate }}</SaleEndDate>
+            {% endif %}
+
+            {% if product.shipmentType is not empty %}
+                <ShipmentType>{{ product.shipmentType }}</ShipmentType>
+            {% endif %}
+
+            {% if product.productId is not empty %}
+                <ProductId>{{ product.productId }}</ProductId>
+            {% endif %}
+
+            {% if product.condition is not empty %}
+                <Condition>{{ product.condition }}</Condition>
+            {% endif %}
+
+            {% if product.quantity is not empty %}
+                <Quantity>{{ product.quantity }}</Quantity>
+            {% endif %}
+
+            <ProductData>
+                <MainMaterial>{{ product.mainMaterial }}</MainMaterial>
+                <ProductWeight>{{ product.productWeight }}</ProductWeight>
+                <DescriptionArEG>{{ product.descriptionArEG }}</DescriptionArEG>
+                <NameArEG>{{ product.nameArEG }}</NameArEG>
+                {% if product.color is not empty %}
+                    <Color>{{ product.color }}</Color>
+                {% endif %}
+            </ProductData>
+        </Product>
+    {% endfor %}
+</Request>
+{% endspaceless %}

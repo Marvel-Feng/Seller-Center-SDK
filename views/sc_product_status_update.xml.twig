@@ -1,0 +1,13 @@
+{% spaceless %}
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<Request>
+    {% for product in products %}
+        {# @var product \SellerCenter\Model\Product #}
+        <Product>
+            <SellerSku>{{ product.sellerSku }}</SellerSku>
+            <Status>{{ product.status }}</Status>
+        </Product>
+    {% endfor %}
+</Request>
+{% endspaceless %}
