@@ -21,7 +21,7 @@ class ProductStatusRenderer extends Renderer
     public function render(array $products): string
     {
         return $this->twig->render(
-            dirname(__DIR__, 2).'/views/sc_product_status_update.xml.twig',
+            'sc_product_status.xml.twig',
             ['products' => $products]
         );
     }

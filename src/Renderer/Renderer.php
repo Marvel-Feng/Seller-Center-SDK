@@ -14,7 +14,9 @@ abstract class Renderer
 
     public function __construct()
     {
-        $this->twig = new Environment(new FilesystemLoader());
+        $this->twig = new Environment(new FilesystemLoader(
+            dirname(__DIR__,2).'/views'
+        ));
     }
 
     /**

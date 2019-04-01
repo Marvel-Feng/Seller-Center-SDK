@@ -21,7 +21,7 @@ class ProductCreateRenderer extends Renderer
     public function render(array $products): string
     {
         return $this->twig->render(
-            dirname(__DIR__, 2).'/views/sc_product_create.xml.twig',
+            'sc_product_create.xml.twig',
             ['products' => $products]
         );
     }
