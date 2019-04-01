@@ -64,7 +64,6 @@ class Example
 When performing one of the following actions :
 * `createProducts`
 * `updateProducts`
-* `updateProductsStatus`
 * `createImages`
 
 You will need xml representation to be delivered to the service ,
@@ -80,7 +79,7 @@ class Example
         $productService = new ProductService();
         $products = $productService->getProducts($configuration,[]);
         $renderer = new ProductUpdateRenderer();
-        $xml = $renderer->render();
+        $xml = $renderer->render($products);
         $productService->updateProducts($configuration,$xml);
     }
 }
