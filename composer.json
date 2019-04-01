@@ -1,7 +1,7 @@
 {
   "name": "edfa3ly-backend/seller-center-sdk",
   "description": "PHP SDK for Seller Center API services",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "library",
   "require": {
     "symfony/validator": "^4.2",
