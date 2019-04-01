@@ -59,6 +59,32 @@ class Example
     }
 }
 ```
+
+## Rendering Support
+When performing one of the following actions :
+* `createProducts`
+* `updateProducts`
+* `updateProductsStatus`
+* `createImages`
+
+You will need xml representation to be delivered to the service ,
+Now you can use the `Renderer` Service provided by this package .
+```
+class Example
+{  
+    public function index() {
+        $configuration = new Configuration('https://sellercenter-api.x.com.y','email@example.com','apiKey','apiPassword','username','v1');
+        $configuration->setMinAttemptsDelay(1);  // in seconds default : 1
+        $configuration->setMaxAttemptsDelay(10);  // in seconds default : 5
+        $configuration->setRequestAttemptsThreshold(15) ; // number of failure retries default : 10  
+        $productService = new ProductService();
+        $products = $productService->getProducts($configuration,[]);
+        $renderer = new ProductUpdateRenderer();
+        $xml = $renderer->render();
+        $productService->updateProducts($configuration,$xml);
+    }
+}
+```
 ## Logging Support 
 
 Set Configuration to enable logging

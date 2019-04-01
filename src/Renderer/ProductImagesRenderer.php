@@ -20,7 +20,7 @@ class ProductImagesRenderer extends Renderer
     public function render(array $products): string
     {
         return $this->twig->render(
-            dirname(dirname(__DIR__)).'/views/sc_product_images.xml.twig',
+            dirname(__DIR__, 2).'/views/sc_product_images.xml.twig',
             ['products' => $products]
         );
     }
