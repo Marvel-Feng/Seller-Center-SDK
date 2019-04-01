@@ -24,5 +24,5 @@ abstract class Renderer
      *
      * @return string
      */
-    abstract protected function render(array $data): string;
+    abstract public function render(array $data): string;
 }
