@@ -158,10 +158,10 @@ class Product
     /** @var  $salePrice */
     protected $salePrice;
 
-    /** @var string $shipmentType */
+    /** @var string|null $shipmentType */
     protected $shipmentType;
 
-    /** @var  string $productId */
+    /** @var  string|null $productId */
     protected $productId;
 
     /** @var  integer $quantity */
@@ -182,7 +182,7 @@ class Product
     /** @var string $taxClass */
     protected $taxClass;
 
-    /** @var string $condition */
+    /** @var string|null $condition */
     protected $condition;
 
     /** @var integer $volumetricWeight */
@@ -245,17 +245,17 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCondition(): string
+    public function getCondition(): ?string
     {
         return $this->condition;
     }
 
     /**
-     * @param string $condition
+     * @param string|null $condition
      */
-    public function setCondition(string $condition): void
+    public function setCondition(?string $condition): void
     {
         $this->condition = $condition;
     }
@@ -405,17 +405,17 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductId(): string
+    public function getProductId(): ?string
     {
         return $this->productId;
     }
 
     /**
-     * @param string $productId
+     * @param string|null $productId
      */
-    public function setProductId(string $productId): void
+    public function setProductId(?string $productId): void
     {
         $this->productId = $productId;
     }
@@ -501,17 +501,17 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getShipmentType(): string
+    public function getShipmentType() : ?string
     {
         return $this->shipmentType;
     }
 
     /**
-     * @param string $shipmentType
+     * @param string|null $shipmentType
      */
-    public function setShipmentType(string $shipmentType): void
+    public function setShipmentType(?string $shipmentType): void
     {
         $this->shipmentType = $shipmentType;
     }
