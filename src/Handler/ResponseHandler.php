@@ -51,17 +51,18 @@ class ResponseHandler
     const INTERNAl_APPLICATION_ERROR_CODE      = 1000;
     const EMPTY_REQUEST_ERROR_CODE             = 30;
     /** Break List */
-    const BREAK_LIST = [
-        self::MISSING_PARAMETER_CODE,
-        self::INVALID_VERSION_CODE,
-        self::INVALID_TIME_STAMP_FORMAT_CODE,
-        self::INVALID_REQUEST_FORMAT_CODE,
-        self::LOGIN_FAILED_SIGNATURE_MISMATCH_CODE,
-        self::INVALID_FEED_ID_ERROR_CODE,
-        self::EMPTY_REQUEST_ERROR_CODE,
-        self::INVALID_ACTION_CODE,
-        self::INVALID_VERSION_CODE_2,
-    ];
+    const BREAK_LIST
+        = [
+            self::MISSING_PARAMETER_CODE,
+            self::INVALID_VERSION_CODE,
+            self::INVALID_TIME_STAMP_FORMAT_CODE,
+            self::INVALID_REQUEST_FORMAT_CODE,
+            self::LOGIN_FAILED_SIGNATURE_MISMATCH_CODE,
+            self::INVALID_FEED_ID_ERROR_CODE,
+            self::EMPTY_REQUEST_ERROR_CODE,
+            self::INVALID_ACTION_CODE,
+            self::INVALID_VERSION_CODE_2,
+        ];
     /** @var LoggerInterface $loggerInterface */
     private $loggerInterface;
 
@@ -118,16 +119,17 @@ class ResponseHandler
      */
     public function generateSellerCenterSuccessResponse(array $response): SuccessResponse
     {
-        $responseHead = SuccessResponse::SC_SUCCESS_RESPONSE.'.'
-            .SuccessResponse::SC_RESPONSE_HEAD;
-
+        $responseHead = SuccessResponse::SC_SUCCESS_RESPONSE.'.'.SuccessResponse::SC_RESPONSE_HEAD;
         $responseType = Arr::get($response, "$responseHead.".ResponseHead::SC_HEAD_RESPONSE_TYPE);
+        $successResponse = new SuccessResponse();
+        if (!empty($responseType)) {
+            $generator = $this->generatorFactory->make(
+                $responseType
+            );
+            $successResponse = $generator->makeResponse($response);
+        }
 
-        $generator = $this->generatorFactory->make(
-            $responseType
-        );
-
-        return $generator->makeResponse($response);
+        return $successResponse;
     }
 
     /**

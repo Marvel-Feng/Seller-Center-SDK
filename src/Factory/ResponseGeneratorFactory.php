@@ -8,6 +8,7 @@
 
 namespace SellerCenter\Factory;
 
+use InvalidArgumentException;
 use SellerCenter\Generator\CategoryResponseGenerator;
 use SellerCenter\Generator\FeedStatusResponseGenerator;
 use SellerCenter\Generator\OrderItemResponseGenerator;
@@ -27,7 +28,7 @@ class ResponseGeneratorFactory
      * @param string $responseType
      *
      * @return ResponseGenerator
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function make(string $responseType): ResponseGenerator
     {
@@ -38,12 +39,13 @@ class ResponseGeneratorFactory
                 return new CategoryResponseGenerator(new CategoryAttributeHydrator());
             case 'FeedDetail':
                 return new FeedStatusResponseGenerator(new FeedStatusHydrator());
-            case $responseType == 'Order' || $responseType == 'Orders':
+            case 'Order':
+            case 'Orders':
                 return new OrderResponseGenerator(new OrderHydrator());
             case 'OrderItems':
                 return new OrderItemResponseGenerator(new OrderItemHydrator());
             default:
-                throw new \InvalidArgumentException("$responseType is invalid");
+                throw new InvalidArgumentException("$responseType is invalid");
         }
     }
 }
