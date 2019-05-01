@@ -16,7 +16,7 @@ $ composer require edfa3ly-backend/seller-center-sdk
 ```
 
 ## Dependency Injection (Symfony 4)
-Make sure to register the `SellerCenterBundle` class to enable dependency injection.
+Make sure to register the `SellerCenterBundle::class` to use dependency injection.
 
 ## Seller Center Docs 
 
