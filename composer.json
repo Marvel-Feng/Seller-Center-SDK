@@ -1,22 +1,22 @@
 {
-  "name": "edfa3ly-backend/seller-center-sdk",
+  "name": "marvel-feng/seller-center-sdk",
   "description": "PHP SDK for Seller Center API services",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "type": "library",
   "require": {
-    "symfony/validator": "^4.2",
+    "symfony/validator": ">=4.2",
     "php": ">=7.1.3",
     "ext-json": "*",
     "ext-dom": "*",
-    "symfony/http-foundation": "^4.2",
-    "psr/log": "^1.1",
+    "symfony/http-foundation": "=>4.2",
+    "psr/log": ">=1.1",
     "illuminate/support": "*",
-    "symfony/twig-bundle": "4.2.*",
-    "symfony/dependency-injection": "4.2.*"
+    "symfony/twig-bundle": "=>4.2.*",
+    "symfony/dependency-injection": "=>4.2.*"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "^6.3",
-    "mockery/mockery": "^1.2",
+    "guzzlehttp/guzzle": "=>6.3",
+    "mockery/mockery": "=>1.2",
     "symfony/phpunit-bridge": "*"
   },
   "license": "MIT",
